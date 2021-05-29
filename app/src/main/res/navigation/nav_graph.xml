@@ -9,5 +9,135 @@
         android:id="@+id/authenticationFragment"
         android:name="com.example.lunchforyou.views.authentication.AuthenticationFragment"
         android:label="fragment_authentication"
-        tools:layout="@layout/fragment_authentication" />
+        tools:layout="@layout/fragment_authentication">
+        <action
+            android:id="@+id/action_authenticationFragment_to_restaurantMain"
+            app:destination="@id/restaurantMain" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_clientMain"
+            app:destination="@id/clientMain" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantMain"
+        android:name="com.example.lunchforyou.views.restaurnat.restaurant_main.RestaurantMainFragment"
+        android:label="fragment_restaurant_main"
+        tools:layout="@layout/fragment_restaurant_main" >
+        <action
+            android:id="@+id/action_restaurantMain_to_restaurnatMessagesFragment"
+            app:destination="@id/restaurnatMessagesFragment" />
+        <action
+            android:id="@+id/action_restaurantMain_to_restaurantTodayOrdersFragment"
+            app:destination="@id/restaurantTodayOrdersFragment" />
+        <action
+            android:id="@+id/action_restaurantMain_to_restaurantSubscriptionsFragment"
+            app:destination="@id/restaurantSubscriptionsFragment" />
+        <action
+            android:id="@+id/action_restaurantMain_to_restaurantMenu"
+            app:destination="@id/restaurantMenu" />
+        <action
+            android:id="@+id/action_restaurantMain_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
+        <action
+            android:id="@+id/action_restaurantMain_to_restaurantHistoryFragment"
+            app:destination="@id/restaurantHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientMain"
+        android:name="com.example.lunchforyou.views.client.client_main.ClientMainFragment"
+        android:label="fragment_client_main"
+        tools:layout="@layout/fragment_client_main" >
+        <action
+            android:id="@+id/action_clientMain_to_addRestaurantFragment"
+            app:destination="@id/addRestaurantFragment" />
+        <action
+            android:id="@+id/action_clientMain_to_clientRestaurantDetails"
+            app:destination="@id/clientRestaurantDetails" />
+        <action
+            android:id="@+id/action_clientMain_to_clientSubscriptionFragment"
+            app:destination="@id/clientSubscriptionFragment" />
+        <action
+            android:id="@+id/action_clientMain_to_clientSettingsFragment"
+            app:destination="@id/clientSettingsFragment" />
+        <action
+            android:id="@+id/action_clientMain_to_clientMenuFragment"
+            app:destination="@id/clientMenuFragment" />
+        <action
+            android:id="@+id/action_clientMain_to_clientHistoryFragment"
+            app:destination="@id/clientHistoryFragment" />
+        <action
+            android:id="@+id/action_clientMain_to_clientMessagesFragment"
+            app:destination="@id/clientMessagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRestaurantFragment"
+        android:name="com.example.lunchforyou.views.client.add_restaurant.AddRestaurantFragment"
+        android:label="fragment_add_restaurant"
+        tools:layout="@layout/fragment_add_restaurant" />
+    <fragment
+        android:id="@+id/restaurnatMessagesFragment"
+        android:name="com.example.lunchforyou.views.restaurnat.restaurnat_messages.RestaurnatMessagesFragment"
+        android:label="fragment_restaurnat_messages"
+        tools:layout="@layout/fragment_restaurnat_messages" />
+    <fragment
+        android:id="@+id/clientRestaurantDetails"
+        android:name="com.example.lunchforyou.views.client.client_restaurant_details.ClientRestaurantDetails"
+        android:label="fragment_restaurnat_details_for_client"
+        tools:layout="@layout/fragment_restaurnat_details_for_client" />
+    <fragment
+        android:id="@+id/restaurantTodayOrdersFragment"
+        android:name="com.example.lunchforyou.views.restaurnat.restaurant_today_orders.RestaurantTodayOrdersFragment"
+        android:label="fragment_restaurant_today_orders"
+        tools:layout="@layout/fragment_restaurant_today_orders" />
+    <fragment
+        android:id="@+id/restaurantSubscriptionsFragment"
+        android:name="com.example.lunchforyou.views.restaurnat.restaurnat_subscriptions.RestaurantSubscriptionsFragment"
+        android:label="fragment_restaurant_subscriptions"
+        tools:layout="@layout/fragment_restaurant_subscriptions" />
+    <fragment
+        android:id="@+id/restaurantMenu"
+        android:name="com.example.lunchforyou.views.restaurnat.restaurant_menu.RestaurantMenu"
+        android:label="fragment_restaurant_menu"
+        tools:layout="@layout/fragment_restaurant_menu" />
+    <fragment
+        android:id="@+id/restaurantHistoryFragment"
+        android:name="com.example.lunchforyou.views.restaurnat.restaurnat_history.RestaurantHistoryFragment"
+        android:label="fragment_restaurant_history"
+        tools:layout="@layout/fragment_restaurant_history" />
+    <fragment
+        android:id="@+id/clientSubscriptionFragment"
+        android:name="com.example.lunchforyou.views.client.client_subscription.ClientSubscriptionFragment"
+        android:label="fragment_client_subscription"
+        tools:layout="@layout/fragment_client_subscription" />
+    <fragment
+        android:id="@+id/clientSettingsFragment"
+        android:name="com.example.lunchforyou.views.client.client_settings.ClientSettingsFragment"
+        android:label="fragment_client_settings"
+        tools:layout="@layout/fragment_client_settings" />
+    <fragment
+        android:id="@+id/clientMenuFragment"
+        android:name="com.example.lunchforyou.views.client.client_menu.ClientMenuFragment"
+        android:label="fragment_client_menu"
+        tools:layout="@layout/fragment_client_menu" />
+    <fragment
+        android:id="@+id/clientHistoryFragment"
+        android:name="com.example.lunchforyou.views.client.client_history.ClientHistoryFragment"
+        android:label="fragment_client_history"
+        tools:layout="@layout/fragment_client_history" />
+    <fragment
+        android:id="@+id/restaurantDetailsFragment"
+        android:name="com.example.lunchforyou.views.restaurnat.restaurant_details_for_restaurant.RestaurantDetailsFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
+    <fragment
+        android:id="@+id/clientMessagesFragment"
+        android:name="com.example.lunchforyou.views.client.client_messages.ClientMessagesFragment"
+        android:label="fragment_blank2"
+        tools:layout="@layout/fragment_blank2" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.lunchforyou.views.register.RegisterFragment"
+        android:label="RegisterFragment" />
 </navigation>
