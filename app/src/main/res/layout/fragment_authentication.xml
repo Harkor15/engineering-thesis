@@ -10,6 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/card_background"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/a_loginButton"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -26,10 +28,10 @@
             android:background="@drawable/button"
             android:text="@string/login"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/a_inputPassword" />
 
         <EditText
-            android:id="@+id/inputPassword"
+            android:id="@+id/a_inputPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -37,31 +39,31 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="@+id/inputLogin"
-            app:layout_constraintStart_toStartOf="@+id/inputLogin"
-            app:layout_constraintTop_toBottomOf="@+id/inputLogin" />
+            app:layout_constraintEnd_toEndOf="@+id/a_inputLogin"
+            app:layout_constraintStart_toStartOf="@+id/a_inputLogin"
+            app:layout_constraintTop_toBottomOf="@+id/a_inputLogin" />
 
         <TextView
-            android:id="@+id/createNewAccountButton"
+            android:id="@+id/a_createNewAccountButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="?attr/selectableItemBackground"
-            android:padding="14dp"
             android:clickable="true"
+            android:focusable="true"
+            android:padding="14dp"
             android:text="@string/create_new_account"
             android:textAllCaps="true"
             android:textColor="@color/purple_500"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/inputPassword"
-            app:layout_constraintTop_toBottomOf="@+id/inputPassword"
-            android:focusable="true" />
+            app:layout_constraintStart_toStartOf="@+id/a_inputPassword"
+            app:layout_constraintTop_toBottomOf="@+id/a_inputPassword" />
 
         <EditText
-            android:id="@+id/inputLogin"
+            android:id="@+id/a_inputLogin"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

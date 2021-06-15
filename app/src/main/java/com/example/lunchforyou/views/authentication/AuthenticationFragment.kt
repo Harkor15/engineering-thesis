@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.Navigation
 import com.example.lunchforyou.R
@@ -29,10 +30,15 @@ class AuthenticationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.loginButton).setOnClickListener {
-            navController.navigate(R.id.action_authenticationFragment_to_restaurantMain)
+        view.findViewById<Button>(R.id.a_loginButton).setOnClickListener {
+            val login = view.findViewById<EditText>(R.id.a_inputLogin).text
+            if(login.isNotEmpty())
+                navController.navigate(R.id.action_authenticationFragment_to_restaurantMain)
+            else
+                navController.navigate(R.id.action_authenticationFragment_to_newClientMainFragment)
+
         }
-        view.findViewById<TextView>(R.id.createNewAccountButton).setOnClickListener{
+        view.findViewById<TextView>(R.id.a_createNewAccountButton).setOnClickListener{
             navController.navigate(R.id.action_authenticationFragment_to_registerFragment)
         }
     }
