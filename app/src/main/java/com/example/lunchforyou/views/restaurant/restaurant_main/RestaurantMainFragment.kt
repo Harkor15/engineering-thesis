@@ -36,7 +36,7 @@ class RestaurantMainFragment : Fragment() {
             navController.navigate(R.id.action_restaurantMain_to_restaurantTodayOrdersFragment)
         }
         view.findViewById<ConstraintLayout>(R.id.rm_messages).setOnClickListener {
-            navController.navigate(R.id.action_restaurantMain_to_restaurnatMessagesFragment)
+            navController.navigate(R.id.action_restaurantMain_to_restaurantMessagesFragment)
         }
         super.onViewCreated(view, savedInstanceState)
     }

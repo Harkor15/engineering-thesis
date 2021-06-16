@@ -26,8 +26,8 @@
         android:label="fragment_restaurant_main"
         tools:layout="@layout/fragment_restaurant_main" >
         <action
-            android:id="@+id/action_restaurantMain_to_restaurnatMessagesFragment"
-            app:destination="@id/restaurnatMessagesFragment" />
+            android:id="@+id/action_restaurantMain_to_restaurantMessagesFragment"
+            app:destination="@id/restaurantMessagesFragment" />
         <action
             android:id="@+id/action_restaurantMain_to_restaurantTodayOrdersFragment"
             app:destination="@id/restaurantTodayOrdersFragment" />
@@ -78,15 +78,15 @@
             app:destination="@id/clientMain" />
     </fragment>
     <fragment
-        android:id="@+id/restaurnatMessagesFragment"
-        android:name="com.example.lunchforyou.views.restaurant.restaurnat_messages.RestaurnatMessagesFragment"
-        android:label="fragment_restaurnat_messages"
-        tools:layout="@layout/fragment_restaurnat_messages" />
+        android:id="@+id/restaurantMessagesFragment"
+        android:name="com.example.lunchforyou.views.restaurant.restaurant_messages.RestaurantMessagesFragment"
+        android:label="fragment_restaurant_messages"
+        tools:layout="@layout/fragment_restaurant_messages" />
     <fragment
         android:id="@+id/clientRestaurantDetails"
         android:name="com.example.lunchforyou.views.client.client_restaurant_details.ClientRestaurantDetails"
-        android:label="fragment_restaurnat_details_for_client"
-        tools:layout="@layout/fragment_restaurnat_details_for_client" />
+        android:label="fragment_restaurant_details_for_client"
+        tools:layout="@layout/fragment_restaurant_details_for_client" />
     <fragment
         android:id="@+id/restaurantTodayOrdersFragment"
         android:name="com.example.lunchforyou.views.restaurant.restaurant_today_orders.RestaurantTodayOrdersFragment"
@@ -94,7 +94,7 @@
         tools:layout="@layout/fragment_restaurant_today_orders" />
     <fragment
         android:id="@+id/restaurantSubscriptionsFragment"
-        android:name="com.example.lunchforyou.views.restaurant.restaurnat_subscriptions.RestaurantSubscriptionsFragment"
+        android:name="com.example.lunchforyou.views.restaurant.restaurant_subscriptions.RestaurantSubscriptionsFragment"
         android:label="fragment_restaurant_subscriptions"
         tools:layout="@layout/fragment_restaurant_subscriptions" />
     <fragment
@@ -104,7 +104,7 @@
         tools:layout="@layout/fragment_restaurant_menu" />
     <fragment
         android:id="@+id/restaurantHistoryFragment"
-        android:name="com.example.lunchforyou.views.restaurant.restaurnat_history.RestaurantHistoryFragment"
+        android:name="com.example.lunchforyou.views.restaurant.restaurant_history.RestaurantHistoryFragment"
         android:label="fragment_restaurant_history"
         tools:layout="@layout/fragment_restaurant_history" />
     <fragment

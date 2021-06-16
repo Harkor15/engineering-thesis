@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.client.client_restaurant_details.ClientRestaurantDetails">
+    tools:context=".views.restaurant.restaurant_messages.RestaurnatMessagesFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

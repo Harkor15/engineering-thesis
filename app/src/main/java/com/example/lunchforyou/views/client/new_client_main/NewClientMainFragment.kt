@@ -22,8 +22,8 @@ class NewClientMainFragment : Fragment() {
         val navController = Navigation.findNavController(view)
 
         //TODO: IF LOGED
-        var logged= false
-        if(logged){
+        var haveRestaurantAdded= true
+        if(haveRestaurantAdded){
             navController.navigate(R.id.action_newClientMainFragment_to_clientMain)
         }
 

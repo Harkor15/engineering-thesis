@@ -35,7 +35,7 @@ class ClientRestaurantDetails : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurnat_details_for_client, container, false)
+        return inflater.inflate(R.layout.fragment_restaurant_details_for_client, container, false)
     }
 
     companion object {
