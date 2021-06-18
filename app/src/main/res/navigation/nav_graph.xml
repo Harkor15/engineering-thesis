@@ -136,7 +136,7 @@
         android:id="@+id/clientMessagesFragment"
         android:name="com.example.lunchforyou.views.client.client_messages.ClientMessagesFragment"
         android:label="fragment_blank2"
-        tools:layout="@layout/fragment_blank2" />
+        tools:layout="@layout/fragment_client_messages" />
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.lunchforyou.views.register.RegisterFragment"

@@ -24,4 +24,6 @@
     <string name="back">Back</string>
     <string name="today">Today</string>
     <string name="add_note">Add note</string>
+    <string name="save">Save</string>
+    <string name="extendSubscription"> Extend subscription</string>
 </resources>
