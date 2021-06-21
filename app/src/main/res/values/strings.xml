@@ -26,4 +26,21 @@
     <string name="add_note">Add note</string>
     <string name="save">Save</string>
     <string name="extendSubscription"> Extend subscription</string>
+    <string name="summary">Summary</string>
+    <string name="activeSubscribers">Active subscribers</string>
+    <string name="newSubscribersThisMonth">New subscribers (this month)</string>
+    <string name="lostSubscribersThisMonth">Lost subscribers (this month)</string>
+    <string name="allSubscribers">All subscribers</string>
+    <string name="subscribers">Subscribers</string>
+    <string name="subscriptionSince">Subscription since:</string>
+    <string name="daysRemain">Days remain</string>
+    <string name="restaurantName">Restaurant Name</string>
+    <string name="subscriptionPrice">Subscription price</string>
+    <string name="order">Order</string>
+    <string name="note">Note</string>
+    <string name="status">Status</string>
+    <string name="ordersHistory">Orders history</string>
+    <string name="option1">Option 1</string>
+    <string name="option2">Option 2</string>
+    <string name="pleaseEnterValidLoginDetails">Please enter valid login details</string>
 </resources>

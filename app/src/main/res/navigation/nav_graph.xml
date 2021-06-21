@@ -131,7 +131,7 @@
         android:id="@+id/restaurantDetailsFragment"
         android:name="com.example.lunchforyou.views.restaurant.restaurant_details_for_restaurant.RestaurantDetailsFragment"
         android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+        tools:layout="@layout/fragment_restaurant_details" />
     <fragment
         android:id="@+id/clientMessagesFragment"
         android:name="com.example.lunchforyou.views.client.client_messages.ClientMessagesFragment"

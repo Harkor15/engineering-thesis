@@ -1,4 +1,4 @@
-package com.example.lunchforyou.views.restaurant.restaurnat_subscriptions
+package com.example.lunchforyou.views.restaurant.restaurant_subscriptions
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
