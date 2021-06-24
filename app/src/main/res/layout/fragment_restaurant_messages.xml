@@ -7,18 +7,18 @@
     tools:context=".views.restaurant.restaurant_messages.RestaurantMessagesFragment">
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/cmess_button_send"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintBottom_toBottomOf="@+id/cmess_input_messageText"
         app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toTopOf="@+id/cmess_input_messageText" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/cmess_input_messageText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -28,7 +28,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintEnd_toStartOf="@+id/cmess_button_send"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
@@ -36,7 +36,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintBottom_toTopOf="@+id/cmess_input_messageText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView26">
@@ -79,12 +79,12 @@
         android:text="@string/messages"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/button8"
+        app:layout_constraintBottom_toBottomOf="@+id/rmess_button_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/rmess_button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

@@ -22,8 +22,6 @@ class AuthenticationFragment : Fragment() {
     ): View? {
         Log.d(TAG, "Auth fragment on create")
         val view: View = inflater.inflate(R.layout.fragment_authentication, container, false)
-
-
         return view
     }
 
@@ -39,7 +37,10 @@ class AuthenticationFragment : Fragment() {
                 if(login.first() == 'r' || login.first()=='R'){
                     navController.navigate(R.id.action_authenticationFragment_to_restaurantMain)
                 }else{
-                    navController.navigate(R.id.action_authenticationFragment_to_newClientMainFragment)
+                    if(login[1]=='n'||login[1]=='N')
+                        navController.navigate(R.id.action_authenticationFragment_to_newClientMainFragment)
+                    else
+                        navController.navigate(R.id.action_authenticationFragment_to_clientMain)
                 }
             }
         }

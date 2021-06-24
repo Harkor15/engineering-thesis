@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/rmenu_button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -54,9 +54,27 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
-                    android:layout_width="363dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/rmenu_input_option1"
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView65"
+                    app:layout_constraintTop_toBottomOf="@+id/textView65">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/light_gray"
+                        android:hint="@string/option1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/rmenu_input_option2"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
@@ -68,9 +86,9 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="98dp"
-                        android:background="@drawable/input_background"
-                        android:hint="hint" />
+                        android:layout_height="match_parent"
+                        android:background="@color/light_gray"
+                        android:hint="@string/option2" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -78,9 +96,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@string/option1"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/option2"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="150dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/rmenu_input_option1" />
 
                 <TextView
                     android:id="@+id/textView65"
@@ -91,24 +110,6 @@
                     android:text="@string/option1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
-                    android:layout_width="363dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView65"
-                    app:layout_constraintTop_toBottomOf="@+id/textView65">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="98dp"
-                        android:background="@drawable/input_background"
-                        android:hint="hint" />
-                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

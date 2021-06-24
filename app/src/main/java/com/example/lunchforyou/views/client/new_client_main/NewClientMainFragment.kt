@@ -21,11 +21,11 @@ class NewClientMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(view)
 
-        //TODO: IF LOGED
+        /*//TODO: IF LOGED
         var haveRestaurantAdded= true
         if(haveRestaurantAdded){
             navController.navigate(R.id.action_newClientMainFragment_to_clientMain)
-        }
+        }*/
 
         view.findViewById<ConstraintLayout>(R.id.ncm_addRestaurant).setOnClickListener {
             navController.navigate(R.id.action_newClientMainFragment_to_addRestaurantFragment)

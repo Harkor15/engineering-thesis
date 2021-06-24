@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_authenticationFragment_to_newClientMainFragment"
             app:destination="@id/newClientMainFragment" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_clientMain"
+            app:destination="@id/clientMain" />
     </fragment>
     <fragment
         android:id="@+id/restaurantMain"
