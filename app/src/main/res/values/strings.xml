@@ -43,4 +43,6 @@
     <string name="option1">Option 1</string>
     <string name="option2">Option 2</string>
     <string name="pleaseEnterValidLoginDetails">Please enter valid login details</string>
+    <string name="check_my_location">Check my location</string>
+    <string name="error">Error</string>
 </resources>
