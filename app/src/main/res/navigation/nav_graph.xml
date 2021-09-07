@@ -143,7 +143,8 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.lunchforyou.views.register.RegisterFragment"
-        android:label="RegisterFragment" />
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/newClientMainFragment"
         android:name="com.example.lunchforyou.views.client.new_client_main.NewClientMainFragment"

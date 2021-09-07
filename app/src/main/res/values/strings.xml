@@ -45,4 +45,8 @@
     <string name="pleaseEnterValidLoginDetails">Please enter valid login details</string>
     <string name="check_my_location">Check my location</string>
     <string name="error">Error</string>
+    <string name="registration_failure">Registration failure</string>
+    <string name="passwords_are_not_the_same">Passwords are not the same</string>
+    <string name="password_must_be_at_least_8_characters">Password must have at least 8 characters</string>
+    <string name="email_is_not_correct">Email is not correct</string>
 </resources>
