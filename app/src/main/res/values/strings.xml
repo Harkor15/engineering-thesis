@@ -49,4 +49,6 @@
     <string name="passwords_are_not_the_same">Passwords are not the same</string>
     <string name="password_must_be_at_least_8_characters">Password must have at least 8 characters</string>
     <string name="email_is_not_correct">Email is not correct</string>
+    <string name="login_failure">Login failure</string>
+    <string name="enter_login_and_password">Enter your login and password</string>
 </resources>

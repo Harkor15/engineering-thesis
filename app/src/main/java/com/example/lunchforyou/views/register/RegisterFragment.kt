@@ -16,7 +16,7 @@ import com.example.lunchforyou.R
 
 
 class RegisterFragment : Fragment() {
-    val viewModel = RegisterViewModel()
+    private val viewModel = RegisterViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
