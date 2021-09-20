@@ -11,12 +11,13 @@ class AuthService{
         auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    if (it.result.user != null)
+                    if (it.result.user == null)
                         callback.onUserCreateFailure()
                     else
                         callback.onUserCreateResult(it.result.user!!.uid)
-                } else
+                } else{
                     callback.onUserCreateFailure()
+                }
             }
     }
 

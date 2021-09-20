@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.lunchforyou.R
 import com.example.lunchforyou.utils.TAG
@@ -31,6 +32,7 @@ class AuthenticationFragment : Fragment() {
         viewModel.signInResult.observe(viewLifecycleOwner,{
             if(it){
                 //TODO: Handle user logged
+                Toast.makeText(requireContext(), "Loged", Toast.LENGTH_SHORT).show()
             }
         })
         return view
