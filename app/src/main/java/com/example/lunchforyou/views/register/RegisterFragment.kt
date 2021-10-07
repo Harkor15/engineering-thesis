@@ -9,7 +9,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.example.lunchforyou.R
 
 
@@ -22,6 +24,7 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var view = inflater.inflate(R.layout.fragment_register, container, false)
         viewModel.registrationInfo.observe(viewLifecycleOwner, {
             requireView().findViewById<TextView>(R.id.regInfo).setText(it)
             requireView().findViewById<TextView>(R.id.regInfo).visibility=View.VISIBLE
@@ -29,10 +32,12 @@ class RegisterFragment : Fragment() {
         viewModel.registerResult.observe(viewLifecycleOwner,{
             if(it){
                 Toast.makeText(requireContext(), "Registered!", Toast.LENGTH_SHORT).show()
+                val navController = Navigation.findNavController(view)
+                navController.popBackStack()
             }
         })
 
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
