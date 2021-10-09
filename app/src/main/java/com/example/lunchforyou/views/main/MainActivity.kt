@@ -2,10 +2,8 @@ package com.example.lunchforyou.views.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.lunchforyou.R
-import com.example.lunchforyou.utils.DatabaseManager
-import com.parse.ParseObject
+import com.example.lunchforyou.database.DatabaseManager
 
 
 class MainActivity : AppCompatActivity() {
