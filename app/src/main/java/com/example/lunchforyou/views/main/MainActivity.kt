@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DatabaseManager.getUser("aaaaaaaaaa")
+        DatabaseManager.getClient("aaaaaaaaaa")
        /* val firstObject = ParseObject("FirstClass")
         firstObject.put("message","Hey ! First message from android. Parse is now connected")
         firstObject.saveInBackground {

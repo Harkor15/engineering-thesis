@@ -12,28 +12,32 @@ import com.parse.ParseObject
 class DatabaseManager {
 
     companion object {
-        fun getUser(token: String) {
-            val query = ParseQuery.getQuery<ParseObject>(CLIENT_TABLE)
-            query.whereEqualTo(TOKEN_FIELD, token)
-            query.orderByDescending(TOKEN_FIELD)
+        fun getClient(token: String, response: iGetClient ) {
+            val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
+            query.whereEqualTo(ClientTableNamespace.TOKEN, token)
+            query.orderByDescending(ClientTableNamespace.TOKEN)
             query.findInBackground { objects, e ->
                 if (e == null) {
                     if (objects.isEmpty())
-                        Log.d(TAG, "No record found")
+                        response.error("No record found")
                     else
-                        Log.d(TAG, objects.first().get(TOKEN_FIELD).toString())
+                        response.getClientResponse(Client(objects.first()))
                 } else {
-                    Log.d(TAG, "Error: " + e.message!!)
+                    response.error(e.message!!)
                 }
             }
         }
 
-        fun deleteUser(id: String){}
+        fun deleteUser(id: String){
 
-        fun createRestaurant(){}
+        }
+
+        fun createRestaurant(){
+            val entity = ParseObject(RESTAURANT_TABLE)
+        }
 
         fun createNewUser(){
-
+            val entity = ParseObject(ClientTableNamespace.TABLE_NAME)
         }
 
         fun getRestaurant(){
@@ -60,12 +64,21 @@ class DatabaseManager {
 
         }
 
-        fun setMenu(restaruantId: String, day:String){
+        fun setMenu(restaurantId: String, day:String){
 
         }
 
 
-        private const val CLIENT_TABLE = "Client"
-        private const val TOKEN_FIELD = "Token"
+
+        private const val RESTAURANT_TABLE = "Restaurant"
     }
 }
+        object ClientTableNamespace{
+            const val TABLE_NAME = "client"
+            const val ID = "id"
+            const val TOKEN = "token"
+            const val NAME = "name"
+            const val SURNAME = "surname"
+            const val ADDRESS = "address"
+            const val SUBSCRIBED_RESTAURANT_TOKEN = "subscribed_restaurant_token"
+        }

@@ -1,7 +1,18 @@
 package com.example.lunchforyou.database
 
-data class Client(val id:String ,val name:String, val surname:String,
-                  val address:String, val subscribedRestaurantToken:String)
+import com.parse.ParseObject
+
+data class Client(val id:String ,val token:String , val name:String, val surname:String,
+                  val address:String, val subscribedRestaurantToken:String){
+    constructor(parseObject: ParseObject) : this(
+        parseObject.getString(ClientTableNamespace.ID)!!,
+        parseObject.getString(ClientTableNamespace.TOKEN)!!,
+        parseObject.getString(ClientTableNamespace.NAME)!!,
+        parseObject.getString(ClientTableNamespace.SURNAME)!!,
+        parseObject.getString(ClientTableNamespace.ADDRESS)!!,
+        parseObject.getString(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN)!!,
+    )
+}
 
 data class Restaurant(val id:String, val name:String, val address: String,
                       val subscriptionPrice:Double, val deviveryHurs:String,
