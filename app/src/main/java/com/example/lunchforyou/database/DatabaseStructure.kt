@@ -15,7 +15,7 @@ data class Client(val id:String ,val token:String , val name:String, val surname
 }
 
 data class Restaurant(val id:String, val name:String, val address: String,
-                      val subscriptionPrice:Double, val deviveryHurs:String,
+                      val subscriptionPrice:Double, val deliveryHours:String,
                       val openedHours:String)
 
 data class Subscription(val id:String,val restaurantId:String, val userId:String,
