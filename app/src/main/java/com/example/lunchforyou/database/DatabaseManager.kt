@@ -10,23 +10,7 @@ import com.parse.ParseObject
 class DatabaseManager {
 
     companion object {
-        fun getClient(token: String, response: IGetClient ) {
-            val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
-            query.whereEqualTo(ClientTableNamespace.TOKEN, token)
-            query.orderByDescending(ClientTableNamespace.TOKEN)
-            query.findInBackground { objects, e ->
-                if (e == null) {
-                    if (objects.isEmpty())
-                        response.error("No record found")
-                    else
-                        response.getClientResponse(Client(objects.first()))
-                } else {
-                    response.error(e.message!!)
-                }
-            }
-        }
-
-        fun deleteClient(token: String, response: IDeleteClient){
+                /*fun deleteClient(token: String, response: IDeleteClient){
             val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
             query.whereEqualTo(ClientTableNamespace.TOKEN, token)
             query.orderByDescending(ClientTableNamespace.TOKEN)
@@ -44,9 +28,75 @@ class DatabaseManager {
                     response.error(e.message!!)
                 }
             }
+        }*/
+
+//        fun deleteClient(parseObject: ParseObject, response: IDeleteClient?){
+//            parseObject.deleteInBackground { e->
+//                if(response!=null){
+//                    if(e==null)
+//                        response.userDeleted()
+//                    else
+//                        response.error(e.message!!)
+//                }
+//            }
+//        }
+
+        fun createClient(parseObject: ParseObject, response: DatabaseResponseInterface?){
+            parseObject.saveInBackground{ e ->
+                if(response!=null){
+                    if(e==null)
+                        response.success(ClientTableNamespace.TABLE_NAME,DatabaseOperationType.CREATE)
+                    else
+                        response.error(e.message!!, ClientTableNamespace.TABLE_NAME, DatabaseOperationType.CREATE)
+                }
+            }
         }
 
-        fun updateClient()
+        fun readClient(token: String, response: DatabaseResponseInterface ) {
+            val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
+            query.whereEqualTo(ClientTableNamespace.TOKEN, token)
+            query.orderByDescending(ClientTableNamespace.TOKEN)
+            query.findInBackground { objects, e ->
+                if (e == null) {
+                    if (objects.isEmpty())
+                        response.error("No record found",ClientTableNamespace.TABLE_NAME,DatabaseOperationType.READ)
+                    else
+                        response.readed(objects.first())
+                } else {
+                    response.error(e.message!!,ClientTableNamespace.TABLE_NAME,DatabaseOperationType.READ)
+                }
+            }
+        }
+
+        fun updateClient(parseObject: ParseObject, response: DatabaseResponseInterface?){
+            parseObject.saveInBackground{ e ->
+                if(response!=null){
+                    if(e==null)
+                        response.success(ClientTableNamespace.TABLE_NAME,DatabaseOperationType.UPDATE)
+                    else
+                        response.error(e.message!!, ClientTableNamespace.TABLE_NAME, DatabaseOperationType.UPDATE)
+                }
+            }
+        }
+
+        fun deleteClient(parseObject: ParseObject, response: DatabaseResponseInterface?){
+            parseObject.deleteInBackground{e->
+                if(response!=null) {
+                    if (e != null) {
+                        response.error(
+                            e.message!!,
+                            ClientTableNamespace.TABLE_NAME,
+                            DatabaseOperationType.DELETE
+                        )
+                    } else {
+                        response.success(
+                            ClientTableNamespace.TABLE_NAME,
+                            DatabaseOperationType.DELETE
+                        )
+                    }
+                }
+            }
+        }
 
         fun createRestaurant(){
             val entity = ParseObject(RESTAURANT_TABLE)
