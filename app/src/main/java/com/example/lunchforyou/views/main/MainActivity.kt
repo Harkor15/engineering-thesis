@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.example.lunchforyou.R
 import com.example.lunchforyou.database.*
-import com.parse.ParseObject
 import kotlinx.coroutines.launch
 
 
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
         lifecycleScope.launch {
-            val cli = Client2.Read("aaaaa")
+            val cli = Client.Read("aaaaa")
             if(cli!=null){
                 Log.d(TAG,cli.name!!);
             }

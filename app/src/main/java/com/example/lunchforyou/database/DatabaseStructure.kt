@@ -2,19 +2,7 @@ package com.example.lunchforyou.database
 
 import com.parse.ParseObject
 
-data class Client(val id:String ,val token:String , val name:String, val surname:String,
-                  val address:String, val subscribedRestaurantToken:String){
-    constructor(parseObject: ParseObject) : this(
-        parseObject.getString(ClientTableNamespace.ID)!!,
-        parseObject.getString(ClientTableNamespace.TOKEN)!!,
-        parseObject.getString(ClientTableNamespace.NAME)!!,
-        parseObject.getString(ClientTableNamespace.SURNAME)!!,
-        parseObject.getString(ClientTableNamespace.ADDRESS)!!,
-        parseObject.getString(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN)!!,
-    )
-}
-
-class Client2(var parseObject: ParseObject) {
+class Client(var parseObject: ParseObject) {
     var id = parseObject.getString(ClientTableNamespace.ID)
     var token = parseObject.getString(ClientTableNamespace.TOKEN)
     var name = parseObject.getString(ClientTableNamespace.NAME)
@@ -43,21 +31,19 @@ class Client2(var parseObject: ParseObject) {
             ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN,
             subscribedRestaurantToken!!
         )
-        return DatabaseManager.saveClient(parseObject)
+        return DatabaseManager.save(parseObject)
     }
 
     suspend fun Delete(): Boolean {
         return DatabaseManager.deleteClient(parseObject)
     }
 
-
     suspend fun Create(
         token: String,
         name: String,
         surname: String,
         address: String,
-        subscribedRestaurantToken: String?,
-        response: DatabaseResponseInterface?
+        subscribedRestaurantToken: String?
     ) {
         var createdParseObject = ParseObject(ClientTableNamespace.TABLE_NAME)
         createdParseObject.put(ClientTableNamespace.TOKEN, token)
@@ -69,14 +55,14 @@ class Client2(var parseObject: ParseObject) {
                 ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN,
                 subscribedRestaurantToken
             )
-        DatabaseManager.saveClient(createdParseObject)
+        DatabaseManager.save(createdParseObject)
     }
 
     companion object {
-        suspend fun Read(token: String): Client2? {
+        suspend fun Read(token: String): Client? {
             val response = DatabaseManager.readClient(token)
             return if (response != null) {
-                Client2(response)
+                Client(response)
             } else {
                 null
             }
@@ -119,7 +105,7 @@ object ClientTableNamespace{
 object RestaurantTableNamespace{
     const val TABLE_NAME = "Restaurant"
     const val ID = "id"
-    const val token = "token"
+    const val TOKEN = "token"
     const val NAME ="name"
     const val ADDRESS = "address"
     const val SUBSCRIPTION_PRICE="subscriptionPrice"
