@@ -4,16 +4,25 @@ import com.example.lunchforyou.utils.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.example.lunchforyou.R
 import com.example.lunchforyou.database.*
 import com.parse.ParseObject
+import kotlinx.coroutines.launch
 
 
-class MainActivity : AppCompatActivity(), DatabaseResponseInterface {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        lifecycleScope.launch {
+            val cli = Client2.Read("aaaaa")
+            if(cli!=null){
+                Log.d(TAG,cli.name!!);
+            }
+        }
         //Client2.Create("aaaaa","Name","Surname", "Address",null, this)
         //Client2.Read("aaaaa",this)
 
@@ -31,16 +40,5 @@ class MainActivity : AppCompatActivity(), DatabaseResponseInterface {
         }*/
     }
 
-    override fun success(table: String?, operation: DatabaseOperationType?) {
-        Log.d(TAG,"Success")
-    }
 
-    override fun error(e: String, table: String?, operation: DatabaseOperationType?) {
-        Log.d(TAG, "ERROR $e")
-    }
-
-    override fun readed(parseObject: ParseObject) {
-        val client = Client2(parseObject)
-        Log.d(TAG,"Readed: ${client.token} name: ${client.name} ")
-    }
 }

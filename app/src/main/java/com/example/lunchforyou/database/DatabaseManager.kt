@@ -1,74 +1,44 @@
         package com.example.lunchforyou.database
 
+import android.util.Log
+import com.example.lunchforyou.utils.TAG
+import com.parse.Parse
 import com.parse.ParseQuery
 
 import com.parse.ParseObject
+import java.lang.Exception
 
 
-
-
-class DatabaseManager {
+        class DatabaseManager {
 
     companion object {
-                /*fun deleteClient(token: String, response: IDeleteClient){
-            val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
-            query.whereEqualTo(ClientTableNamespace.TOKEN, token)
-            query.orderByDescending(ClientTableNamespace.TOKEN)
-            query.findInBackground { objects, e ->
-                if (e == null) {
-                    if (objects.isNotEmpty())
-                        objects.first().deleteInBackground { e->
-                            if(e!=null){
-                                response.error(e.message!!)
-                            }else{
-                                response.userDeleted()
-                            }
-                            }
-                } else {
-                    response.error(e.message!!)
-                }
-            }
-        }*/
-
-//        fun deleteClient(parseObject: ParseObject, response: IDeleteClient?){
-//            parseObject.deleteInBackground { e->
-//                if(response!=null){
-//                    if(e==null)
-//                        response.userDeleted()
-//                    else
-//                        response.error(e.message!!)
-//                }
-//            }
-//        }
-
-        fun createClient(parseObject: ParseObject, response: DatabaseResponseInterface?){
-            parseObject.saveInBackground{ e ->
-                if(response!=null){
-                    if(e==null)
-                        response.success(ClientTableNamespace.TABLE_NAME,DatabaseOperationType.CREATE)
-                    else
-                        response.error(e.message!!, ClientTableNamespace.TABLE_NAME, DatabaseOperationType.CREATE)
-                }
+        suspend fun saveClient(parseObject: ParseObject):Boolean{
+            return try {
+                parseObject.save()
+                true
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
+                false
             }
         }
 
-        fun readClient(token: String, response: DatabaseResponseInterface ) {
+        suspend fun readClient(token: String ):ParseObject? {
             val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
             query.whereEqualTo(ClientTableNamespace.TOKEN, token)
             query.orderByDescending(ClientTableNamespace.TOKEN)
-            query.findInBackground { objects, e ->
-                if (e == null) {
-                    if (objects.isEmpty())
-                        response.error("No record found",ClientTableNamespace.TABLE_NAME,DatabaseOperationType.READ)
-                    else
-                        response.readed(objects.first())
-                } else {
-                    response.error(e.message!!,ClientTableNamespace.TABLE_NAME,DatabaseOperationType.READ)
-                }
+            return try {
+                val objects = query.find()
+                if (objects.isEmpty())
+                    null
+                else
+                    (objects.first())
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
+                null
             }
         }
 
-        fun updateClient(parseObject: ParseObject, response: DatabaseResponseInterface?){
+       /* fun updateClient(parseObject: ParseObject, response: DatabaseResponseInterface?){
             parseObject.saveInBackground{ e ->
                 if(response!=null){
                     if(e==null)
@@ -77,24 +47,15 @@ class DatabaseManager {
                         response.error(e.message!!, ClientTableNamespace.TABLE_NAME, DatabaseOperationType.UPDATE)
                 }
             }
-        }
+        }*/
 
-        fun deleteClient(parseObject: ParseObject, response: DatabaseResponseInterface?){
-            parseObject.deleteInBackground{e->
-                if(response!=null) {
-                    if (e != null) {
-                        response.error(
-                            e.message!!,
-                            ClientTableNamespace.TABLE_NAME,
-                            DatabaseOperationType.DELETE
-                        )
-                    } else {
-                        response.success(
-                            ClientTableNamespace.TABLE_NAME,
-                            DatabaseOperationType.DELETE
-                        )
-                    }
-                }
+        suspend fun deleteClient(parseObject: ParseObject):Boolean{
+            return try {
+                parseObject.delete()
+                true
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
+                false
             }
         }
 

@@ -14,43 +14,77 @@ data class Client(val id:String ,val token:String , val name:String, val surname
     )
 }
 
-class Client2(var parseObject: ParseObject){
-    val id = parseObject.getString(ClientTableNamespace.ID)
+class Client2(var parseObject: ParseObject) {
+    var id = parseObject.getString(ClientTableNamespace.ID)
     var token = parseObject.getString(ClientTableNamespace.TOKEN)
     var name = parseObject.getString(ClientTableNamespace.NAME)
     var surname = parseObject.getString(ClientTableNamespace.SURNAME)
     var address = parseObject.getString(ClientTableNamespace.ADDRESS)
-    var subscribedRestaurantToken = parseObject.getString(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN)
+    var subscribedRestaurantToken =
+        parseObject.getString(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN)
 
-    fun Update(responseInterface: DatabaseResponseInterface?){
-            parseObject.put(ClientTableNamespace.TOKEN, token!!)
-            parseObject.put(ClientTableNamespace.NAME, name!!)
-            parseObject.put(ClientTableNamespace.SURNAME, surname!!)
-            parseObject.put(ClientTableNamespace.ADDRESS, address!!)
-            parseObject.put(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN,subscribedRestaurantToken!!)
-            DatabaseManager.createClient(parseObject,responseInterface)
+    private fun reInit(parseObject: ParseObject) {
+        this.parseObject = parseObject
+        id = parseObject.getString(ClientTableNamespace.ID)
+        token = parseObject.getString(ClientTableNamespace.TOKEN)
+        name = parseObject.getString(ClientTableNamespace.NAME)
+        surname = parseObject.getString(ClientTableNamespace.SURNAME)
+        address = parseObject.getString(ClientTableNamespace.ADDRESS)
+        subscribedRestaurantToken =
+            parseObject.getString(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN)
     }
 
-    fun Delete(response:DatabaseResponseInterface?){
-        DatabaseManager.deleteClient(parseObject,response)
+    suspend fun Update(): Boolean {
+        parseObject.put(ClientTableNamespace.TOKEN, token!!)
+        parseObject.put(ClientTableNamespace.NAME, name!!)
+        parseObject.put(ClientTableNamespace.SURNAME, surname!!)
+        parseObject.put(ClientTableNamespace.ADDRESS, address!!)
+        parseObject.put(
+            ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN,
+            subscribedRestaurantToken!!
+        )
+        return DatabaseManager.saveClient(parseObject)
     }
 
-    companion object{
-        fun Create(token: String, name: String, surname: String, address: String, subscribedRestaurantToken: String?, response:DatabaseResponseInterface?){
-            var createdParseObject = ParseObject(ClientTableNamespace.TABLE_NAME)
-            createdParseObject.put(ClientTableNamespace.TOKEN,token)
-            createdParseObject.put(ClientTableNamespace.NAME,name)
-            createdParseObject.put(ClientTableNamespace.SURNAME, surname)
-            createdParseObject.put(ClientTableNamespace.ADDRESS, address)
-            if(subscribedRestaurantToken != null)
-                createdParseObject.put(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN, subscribedRestaurantToken)
-            DatabaseManager.createClient(createdParseObject,response)
+    suspend fun Delete(): Boolean {
+        return DatabaseManager.deleteClient(parseObject)
+    }
+
+
+    suspend fun Create(
+        token: String,
+        name: String,
+        surname: String,
+        address: String,
+        subscribedRestaurantToken: String?,
+        response: DatabaseResponseInterface?
+    ) {
+        var createdParseObject = ParseObject(ClientTableNamespace.TABLE_NAME)
+        createdParseObject.put(ClientTableNamespace.TOKEN, token)
+        createdParseObject.put(ClientTableNamespace.NAME, name)
+        createdParseObject.put(ClientTableNamespace.SURNAME, surname)
+        createdParseObject.put(ClientTableNamespace.ADDRESS, address)
+        if (subscribedRestaurantToken != null)
+            createdParseObject.put(
+                ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN,
+                subscribedRestaurantToken
+            )
+        DatabaseManager.saveClient(createdParseObject)
+    }
+
+    companion object {
+        suspend fun Read(token: String): Client2? {
+            val response = DatabaseManager.readClient(token)
+            return if (response != null) {
+                Client2(response)
+            } else {
+                null
+            }
         }
-
-        fun Read(token: String, response: DatabaseResponseInterface){
-            DatabaseManager.readClient(token,response)
-        }
     }
+
+
+
 }
 
 
