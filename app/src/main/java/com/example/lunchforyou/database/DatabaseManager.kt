@@ -12,7 +12,7 @@ class DatabaseManager {
 
     companion object {
 
-        fun save(parseObject: ParseObject):Boolean{
+        suspend fun save(parseObject: ParseObject):Boolean{
             return try {
                 parseObject.save()
                 true
@@ -22,7 +22,7 @@ class DatabaseManager {
             }
         }
 
-        fun readClient(token: String ):ParseObject? {
+        suspend fun readClient(token: String ):ParseObject? {
             val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
             query.whereEqualTo(ClientTableNamespace.TOKEN, token)
             query.orderByDescending(ClientTableNamespace.TOKEN)

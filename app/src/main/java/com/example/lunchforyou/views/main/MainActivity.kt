@@ -1,5 +1,6 @@
 package com.example.lunchforyou.views.main
 
+import android.content.Context
 import com.example.lunchforyou.utils.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,9 +16,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        contextOfApplication = applicationContext
 
         lifecycleScope.launch {
-            val cli = Client.Read("aaaaa")
+            val cli = Client.read("aaaaa")
             if(cli!=null){
                 Log.d(TAG,cli.name!!);
             }
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity() {
             }
         }*/
     }
-
+    companion object{
+        lateinit var contextOfApplication: Context
+    }
 
 }
