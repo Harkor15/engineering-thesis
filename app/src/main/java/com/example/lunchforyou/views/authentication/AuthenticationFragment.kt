@@ -23,8 +23,11 @@ class AuthenticationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d(TAG, "Auth fragment on create")
-        val view: View = inflater.inflate(R.layout.fragment_authentication, container, false)
+        return inflater.inflate(R.layout.fragment_authentication, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(view)
 
         viewModel.signInInfo.observe(viewLifecycleOwner,{
@@ -52,12 +55,5 @@ class AuthenticationFragment : Fragment() {
             val password = view.findViewById<EditText>(R.id.a_inputPassword).text.toString()
             viewModel.signIn(login, password)
         }
-
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 }
