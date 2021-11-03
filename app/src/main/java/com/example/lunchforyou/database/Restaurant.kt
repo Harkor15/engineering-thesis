@@ -12,7 +12,7 @@ class Restaurant(var parseObject: ParseObject){
     val openedHours = parseObject.getString(RestaurantTableNamespace.OPENED_HOURS)
 
     companion object {
-        suspend fun Read(token: String): Restaurant? {
+        suspend fun read(token: String): Restaurant? {
             val response = DatabaseManager.readRestaurant(token)
             return if (response != null) {
                 Restaurant(response)

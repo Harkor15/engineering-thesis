@@ -14,8 +14,6 @@ import androidx.navigation.Navigation
 import com.example.lunchforyou.R
 import com.example.lunchforyou.utils.TAG
 
-
-
 class AuthenticationFragment : Fragment() {
     private val viewModel =  AuthenticationViewModel()
 
@@ -43,6 +41,12 @@ class AuthenticationFragment : Fragment() {
         viewModel.navigateToRestaurantMenu.observe(viewLifecycleOwner,{
             if(it){
                 navController.navigate(R.id.action_authenticationFragment_to_restaurantMain)
+            }
+        })
+
+        viewModel.navigateToNewClientMenu.observe(viewLifecycleOwner,{
+            if (it){
+                navController.navigate(R.id.action_authenticationFragment_to_newClientMainFragment)
             }
         })
 

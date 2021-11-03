@@ -75,11 +75,7 @@
         android:id="@+id/addRestaurantFragment"
         android:name="com.example.lunchforyou.views.client.add_restaurant.AddRestaurantFragment"
         android:label="fragment_add_restaurant"
-        tools:layout="@layout/fragment_add_restaurant" >
-        <action
-            android:id="@+id/action_addRestaurantFragment_to_clientMain"
-            app:destination="@id/clientMain" />
-    </fragment>
+        tools:layout="@layout/fragment_add_restaurant" />
     <fragment
         android:id="@+id/restaurantMessagesFragment"
         android:name="com.example.lunchforyou.views.restaurant.restaurant_messages.RestaurantMessagesFragment"
@@ -154,10 +150,7 @@
             android:id="@+id/action_newClientMainFragment_to_clientMain"
             app:destination="@id/clientMain" />
         <action
-            android:id="@+id/action_newClientMainFragment_to_addRestaurantFragment"
-            app:destination="@id/addRestaurantFragment" />
-        <action
-            android:id="@+id/action_newClientMainFragment_to_clientSettingsFragment"
-            app:destination="@id/clientSettingsFragment" />
+            android:id="@+id/action_newClientMainFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
     </fragment>
 </navigation>

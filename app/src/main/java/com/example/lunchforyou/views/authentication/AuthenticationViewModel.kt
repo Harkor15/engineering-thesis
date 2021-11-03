@@ -14,6 +14,8 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
     val signInInfo = MutableLiveData<Int>()
     val navigateToClientMenu = MutableLiveData<Boolean>()
     val navigateToRestaurantMenu = MutableLiveData<Boolean>()
+    val navigateToNewClientMenu = MutableLiveData<Boolean>()
+    val showToast = MutableLiveData<Int>()
 
     fun signIn(login: String, password: String){
         if(password.isEmpty() or login.isEmpty()){
@@ -28,18 +30,17 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
         viewModelScope.launch {
             val client = Client.read(uid)
             if(client==null){
-                val restaurant = Restaurant.Read(uid)
+                val restaurant = Restaurant.read(uid)
                 if(restaurant==null){
-                    if(Client.create(uid,"","","",null))
-                        navigateToClientMenu.value=true
-                    else{
-                    //TODO Database error while creating new user
-                    }
+                    navigateToNewClientMenu.value=true
                 }else{
                     navigateToRestaurantMenu.value=true
                 }
             }else{
-                navigateToClientMenu.value=true
+                if(client.subscribedRestaurantToken!=null)
+                    navigateToClientMenu.value=true
+                else
+                    navigateToNewClientMenu.value=true
             }
         }
     }
