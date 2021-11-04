@@ -48,7 +48,7 @@ class Client(var parseObject: ParseObject) {
             address: String,
             subscribedRestaurantToken: String?
         ):Boolean {
-            var createdParseObject = ParseObject(ClientTableNamespace.TABLE_NAME)
+            val createdParseObject = ParseObject(ClientTableNamespace.TABLE_NAME)
             createdParseObject.put(ClientTableNamespace.TOKEN, token)
             createdParseObject.put(ClientTableNamespace.NAME, name)
             createdParseObject.put(ClientTableNamespace.SURNAME, surname)

@@ -20,5 +20,11 @@ class Restaurant(var parseObject: ParseObject){
                 null
             }
         }
+
+        suspend fun create(token: String):Boolean{
+            val createdParseObject = ParseObject(RestaurantTableNamespace.TABLE_NAME)
+            createdParseObject.put(RestaurantTableNamespace.TOKEN, token)
+            return DatabaseManager.save(createdParseObject)
+        }
     }
 }

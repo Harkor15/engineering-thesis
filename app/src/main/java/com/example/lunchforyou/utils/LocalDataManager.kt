@@ -1,4 +1,4 @@
-package com.example.lunchforyou.local_data
+package com.example.lunchforyou.utils
 
 import android.content.Context
 import com.example.lunchforyou.views.main.MainActivity
@@ -34,6 +34,15 @@ class LocalDataManager {
             putBoolean(SessionNamespace.IS_RESTAURANT,isResult)
             apply()
         }
+    }
+
+    fun clearAllData(){
+        with (MainActivity.contextOfApplication.getSharedPreferences(
+            SessionNamespace.PREFERENCE_KEY,Context.MODE_PRIVATE).edit()){
+            clear()
+            commit()
+        }
+
     }
 }
 

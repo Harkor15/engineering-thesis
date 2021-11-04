@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lunchforyou.database.Client
 import com.example.lunchforyou.database.Restaurant
-import com.example.lunchforyou.local_data.LocalDataManager
+import com.example.lunchforyou.utils.LocalDataManager
 import com.example.lunchforyou.utils.AuthService
 import kotlinx.coroutines.launch
 
@@ -13,6 +13,7 @@ class NewClientMainViewModel:ViewModel() {
     var logout = MutableLiveData<Boolean>()
     var forceToFillClientDetails = MutableLiveData<Boolean>()
     var navigateToMainClient = MutableLiveData<Boolean>()
+    var navigateToMainRestaurant = MutableLiveData<Boolean>()
     var subscribedRestaurant = MutableLiveData<String>()
     var saveClientPersonalDataResult = MutableLiveData<Boolean>()
     var saveRestaurantResult = MutableLiveData<Boolean>()
@@ -36,9 +37,7 @@ class NewClientMainViewModel:ViewModel() {
     }
 
     fun logout(){
-        val ldm = LocalDataManager()
-        ldm.setUserToken("")
-        ldm.setIsUserRestaurant(false)
+        LocalDataManager().clearAllData()
         AuthService().signOut()
         logout.value=true
     }
@@ -84,6 +83,16 @@ class NewClientMainViewModel:ViewModel() {
             }
         }else{
             saveRestaurantResult.value=false
+        }
+    }
+
+    fun createNewRestaurant(){
+        if(token!=null) {
+            viewModelScope.launch {
+                if(Restaurant.create(token))
+                    navigateToMainRestaurant.value=true
+            }
+
         }
     }
 }

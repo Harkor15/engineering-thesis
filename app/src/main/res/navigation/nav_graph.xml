@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_restaurantMain_to_restaurantHistoryFragment"
             app:destination="@id/restaurantHistoryFragment" />
+        <action
+            android:id="@+id/action_restaurantMain_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
     </fragment>
     <fragment
         android:id="@+id/clientMain"
@@ -152,5 +155,8 @@
         <action
             android:id="@+id/action_newClientMainFragment_to_authenticationFragment"
             app:destination="@id/authenticationFragment" />
+        <action
+            android:id="@+id/action_newClientMainFragment_to_restaurantMain"
+            app:destination="@id/restaurantMain" />
     </fragment>
 </navigation>

@@ -59,4 +59,5 @@
     <string name="restaunat_code">Restaurant code</string>
     <string name="logout">Logout</string>
     <string name="personal_data_saved">Personal data saved</string>
+    <string name="create_new_restaurant">Create new restaurant</string>
 </resources>

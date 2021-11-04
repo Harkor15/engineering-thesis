@@ -33,7 +33,6 @@ class NewClientMainFragment : Fragment() {
         val edtxClientAddress = view.findViewById<EditText>(R.id.ncm_edtx_client_address)
 
         viewModel.forceToFillClientDetails.observe(viewLifecycleOwner,{
-            Log.d(TAG, "force $it")
             btnSaveRestaurantCode.isEnabled = !it
         })
 
@@ -66,6 +65,10 @@ class NewClientMainFragment : Fragment() {
 
         })
 
+        viewModel.navigateToMainRestaurant.observe(viewLifecycleOwner,{
+            navController.navigate(R.id.action_newClientMainFragment_to_restaurantMain)
+        })
+
         viewModel.displayClientPersonalData.observe(viewLifecycleOwner,{
             edtxClientName.setText(it.name)
             edtxClientSurname.setText(it.surname)
@@ -75,6 +78,9 @@ class NewClientMainFragment : Fragment() {
 
         view.findViewById<Button>(R.id.ncm_logout).setOnClickListener {
             viewModel.logout()
+        }
+        view.findViewById<Button>(R.id.ncm_create_new_restaurant).setOnClickListener {
+            viewModel.createNewRestaurant()
         }
 
         btnSaveRestaurantCode.setOnClickListener {

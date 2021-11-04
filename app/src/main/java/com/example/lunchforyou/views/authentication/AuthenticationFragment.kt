@@ -59,5 +59,6 @@ class AuthenticationFragment : Fragment() {
             val password = view.findViewById<EditText>(R.id.a_inputPassword).text.toString()
             viewModel.signIn(login, password)
         }
+        viewModel.init()
     }
 }
