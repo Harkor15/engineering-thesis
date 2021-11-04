@@ -89,8 +89,12 @@ class NewClientMainViewModel:ViewModel() {
     fun createNewRestaurant(){
         if(token!=null) {
             viewModelScope.launch {
-                if(Restaurant.create(token))
-                    navigateToMainRestaurant.value=true
+                if(Restaurant.create(token)) {
+                    navigateToMainRestaurant.value = true
+                    val localDataManager = LocalDataManager()
+                    localDataManager.setIsUserRestaurant(true)
+                    localDataManager.setUserToken(token)
+                }
             }
 
         }

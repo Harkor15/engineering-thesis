@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_authentication">
         <action
             android:id="@+id/action_authenticationFragment_to_restaurantMain"
-            app:destination="@id/restaurantMain" />
+            app:destination="@id/restaurantMain"
+            app:popUpTo="@id/authenticationFragment" />
         <action
             android:id="@+id/action_authenticationFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -42,7 +43,8 @@
             app:destination="@id/restaurantMenu" />
         <action
             android:id="@+id/action_restaurantMain_to_restaurantDetailsFragment"
-            app:destination="@id/restaurantDetailsFragment" />
+            app:destination="@id/restaurantDetailsFragment"
+            app:popUpTo="@id/restaurantMain" />
         <action
             android:id="@+id/action_restaurantMain_to_restaurantHistoryFragment"
             app:destination="@id/restaurantHistoryFragment" />
