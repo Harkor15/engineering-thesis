@@ -60,4 +60,9 @@
     <string name="logout">Logout</string>
     <string name="personal_data_saved">Personal data saved</string>
     <string name="create_new_restaurant">Create new restaurant</string>
+    <string name="fill_in_the_balnks">Fill in the blanks</string>
+    <string name="delivery_hours">Delivery hours</string>
+    <string name="open_hours">Open hours</string>
+    <string name="subscription_price_is_not_correct">Subscription price is not correct</string>
+
 </resources>
