@@ -7,9 +7,6 @@ import com.parse.ParseObject
 data class Subscription(val id:String,val restaurantId:String, val userId:String,
                         val boughtDate:String, val boughtDays:Int, val daysLeft:Int)
 
-data class MenuDay(val id:String, val restaurantId: String, val day:String, val dayInWeek:Int,
-                   val soups:List<String>, val mainCourses:List<String>)
-
 data class UserPreference(val id:String, val userId: String, val menuDayId:String,
                           val preferredSoups:List<Int>, val preferredMainCourses:List<Int>,
                           val status:String)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.restaurant.restaurant_menu.RestaurantMenu">
+    tools:context=".views.restaurant.restaurant_menu.RestaurantMenuFragment">
 
     <TextView
         android:id="@+id/textView64"
@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/button"
         android:text="@string/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +35,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button15"
+        app:layout_constraintBottom_toTopOf="@+id/rmenu_btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64">
@@ -50,19 +51,30 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/card_background"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/rmenu_calendar_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_baseline_calendar_today_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/rmenu_date_picker"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rmenu_date_picker" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/rmenu_input_option1"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView65"
-                    app:layout_constraintTop_toBottomOf="@+id/textView65">
+                    app:layout_constraintEnd_toEndOf="@+id/rmenu_calendar_icon"
+                    app:layout_constraintStart_toStartOf="@+id/rmenu_date_picker"
+                    app:layout_constraintTop_toBottomOf="@+id/rmenu_date_picker">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -75,14 +87,12 @@
                     android:id="@+id/rmenu_input_option2"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView65"
-                    app:layout_constraintTop_toBottomOf="@+id/textView66">
+                    app:layout_constraintEnd_toEndOf="@+id/rmenu_input_option1"
+                    app:layout_constraintStart_toStartOf="@+id/rmenu_input_option1"
+                    app:layout_constraintTop_toBottomOf="@+id/rmenu_input_option1">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -91,37 +101,32 @@
                         android:hint="@string/option2" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/textView66"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/rmenu_date_picker"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/option2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rmenu_input_option1" />
-
-                <TextView
-                    android:id="@+id/textView65"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/option1"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="date"
+                    app:layout_constraintEnd_toStartOf="@+id/rmenu_calendar_icon"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/rmenu_btn_save"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/button"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

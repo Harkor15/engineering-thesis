@@ -54,6 +54,22 @@ class DatabaseManager {
             }
         }
 
+        fun readMenuDay(day: String, restaurantId: String):ParseObject?{
+            val query = ParseQuery.getQuery<ParseObject>(MenuDayTableNamespace.TABLE_NAME)
+            query.whereEqualTo(MenuDayTableNamespace.RESTAURANT_ID, restaurantId)
+                .whereEqualTo(MenuDayTableNamespace.DAY, day)
+            return try {
+                val objects = query.find()
+                if (objects.isEmpty())
+                    null
+                else
+                    (objects.first())
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
+                null
+            }
+        }
+
         fun deleteClient(parseObject: ParseObject):Boolean{
             return try {
                 parseObject.delete()

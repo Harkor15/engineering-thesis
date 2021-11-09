@@ -103,7 +103,7 @@
         tools:layout="@layout/fragment_restaurant_subscriptions" />
     <fragment
         android:id="@+id/restaurantMenu"
-        android:name="com.example.lunchforyou.views.restaurant.restaurant_menu.RestaurantMenu"
+        android:name="com.example.lunchforyou.views.restaurant.restaurant_menu.RestaurantMenuFragment"
         android:label="fragment_restaurant_menu"
         tools:layout="@layout/fragment_restaurant_menu" />
     <fragment
