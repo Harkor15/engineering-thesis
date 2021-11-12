@@ -51,9 +51,8 @@ object MenuDayTableNamespace{
     const val ID="id"
     const val RESTAURANT_ID="restaurantId"
     const val DAY="day"
-    const val DAY_IN_WEEK="dayInWeek"
-    const val SOUPS="soups"
-    const val MAIN_COURSES="mainCourses"
+    const val OPTION_1="option_1"
+    const val OPTION_2="option_2"
 }
 
 object UserPreferenceTableNamespace{

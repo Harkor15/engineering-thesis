@@ -23,14 +23,14 @@ class RestaurantMenuFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             navController.popBackStack()
         }
         datePickerEdtx = view.findViewById(R.id.rmenu_date_picker)
-        view.findViewById<ImageView>(R.id.rmenu_calendar_icon).setOnClickListener {
+            view.findViewById<ImageView>(R.id.rmenu_calendar_icon).setOnClickListener {
 
-            DatePickerDialog(requireContext(),this,
-                calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)).show()
-        }
+                DatePickerDialog(requireContext(),this,
+                    calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)).show()
+            }
         view.findViewById<Button>(R.id.rmenu_btn_save).setOnClickListener {
-            vm.save(datePickerEdtx.text.toString(),
+            vm.save(
                 view.findViewById<EditText>(R.id.rmenu_input_option1).text.toString(),
                 view.findViewById<EditText>(R.id.rmenu_input_option2).text.toString()
             )
@@ -41,6 +41,14 @@ class RestaurantMenuFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         vm.response.observe(viewLifecycleOwner,{
             Toast.makeText(requireContext(), it,Toast.LENGTH_SHORT).show()
         })
+        vm.option1.observe(viewLifecycleOwner, {
+            view.findViewById<EditText>(R.id.rmenu_input_option1).setText(it)
+        })
+        vm.option2.observe(viewLifecycleOwner,{
+            view.findViewById<EditText>(R.id.rmenu_input_option2).setText(it)
+        } )
+
+
         vm.init()
     }
 
