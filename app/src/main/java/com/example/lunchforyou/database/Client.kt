@@ -11,7 +11,7 @@ class Client(var parseObject: ParseObject) {
     var subscribedRestaurantToken =
         parseObject.getString(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN)
 
-    private fun reInit(parseObject: ParseObject) {
+    /*private fun reInit(parseObject: ParseObject) {
         this.parseObject = parseObject
         id = parseObject.getString(ClientTableNamespace.ID)
         token = parseObject.getString(ClientTableNamespace.TOKEN)
@@ -20,7 +20,7 @@ class Client(var parseObject: ParseObject) {
         address = parseObject.getString(ClientTableNamespace.ADDRESS)
         subscribedRestaurantToken =
             parseObject.getString(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN)
-    }
+    }*/
 
     suspend fun update(): Boolean {
         parseObject.put(ClientTableNamespace.TOKEN, token!!)

@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import com.example.lunchforyou.R
 
 
 class RestaurantTodayOrdersFragment : Fragment() {
+    private val vm = RestaurantTodayOrdersViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -18,15 +20,16 @@ class RestaurantTodayOrdersFragment : Fragment() {
             val navController = Navigation.findNavController(view)
             navController.popBackStack()
         }
+        vm.data.observe(viewLifecycleOwner,{
+            view.findViewById<RecyclerView>(R.id.to_orders_list).adapter = RestaurantTodayOrdersAdapter(it)
+        })
+        vm.init()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_restaurant_today_orders, container, false)
     }
-
-
 }

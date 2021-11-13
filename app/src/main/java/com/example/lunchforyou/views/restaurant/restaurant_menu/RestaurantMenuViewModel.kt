@@ -20,7 +20,7 @@ class RestaurantMenuViewModel: ViewModel() {
     private var currentMenuDay:MenuDay? = null
 
     fun init(){
-        date.value=getDayString()
+        date.value=getDateString()
         loadMenu()
     }
 
@@ -28,7 +28,7 @@ class RestaurantMenuViewModel: ViewModel() {
         this.day = day
         this.month = month
         this.year = year
-        date.value=getDayString()
+        date.value=getDateString()
         loadMenu()
     }
 
@@ -37,7 +37,7 @@ class RestaurantMenuViewModel: ViewModel() {
             val token = LocalDataManager().getUserToken()
             if(token!=null){
                 viewModelScope.launch {
-                    val result = MenuDay.create(token, getDayString(), option1, option2)
+                    val result = MenuDay.create(token, getDateString(), option1, option2)
                     if(result)
                         loadMenu()
                 }
@@ -55,7 +55,7 @@ class RestaurantMenuViewModel: ViewModel() {
         val token = LocalDataManager().getUserToken()
         if(!token.isNullOrBlank()){
             viewModelScope.launch {
-                currentMenuDay = MenuDay.read(getDayString(), token)
+                currentMenuDay = MenuDay.read(getDateString(), token)
                 if(currentMenuDay!=null) {
                     option1.value = currentMenuDay!!.option1
                     option2.value = currentMenuDay!!.option2
@@ -65,7 +65,7 @@ class RestaurantMenuViewModel: ViewModel() {
 
     }
 
-    private fun getDayString():String{
-        return "$day-$month-$year"
+    private fun getDateString():String{
+        return "$day.$month.$year"
     }
 }

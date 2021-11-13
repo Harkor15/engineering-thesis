@@ -54,10 +54,10 @@ class DatabaseManager {
             }
         }
 
-        fun readMenuDay(day: String, restaurantId: String):ParseObject?{
+        fun readMenuDay(date: String, restaurantId: String):ParseObject?{
             val query = ParseQuery.getQuery<ParseObject>(MenuDayTableNamespace.TABLE_NAME)
             query.whereEqualTo(MenuDayTableNamespace.RESTAURANT_ID, restaurantId)
-                .whereEqualTo(MenuDayTableNamespace.DAY, day)
+                .whereEqualTo(MenuDayTableNamespace.DATE, date  )
             return try {
                 val objects = query.find()
                 if (objects.isEmpty())
@@ -66,6 +66,37 @@ class DatabaseManager {
                     (objects.first())
             }catch (e:Exception){
                 Log.d(TAG,e.message!!)
+                null
+            }
+        }
+
+        fun readUserPreference(userId: String): List<ParseObject>? {
+            val query = ParseQuery<ParseObject>(UserPreferenceTableNamespace.TABLE_NAME)
+            query.whereEqualTo(UserPreferenceTableNamespace.USER_ID, userId)
+            return try{
+                val objects = query.find()
+                if(objects.isEmpty())
+                    null
+                else
+                    objects
+            }catch (e:Exception){
+                Log.d(TAG, e.message!!)
+                null
+            }
+        }
+
+        fun readUserPreference(restaurantId: String, date: String): List<ParseObject>? {
+            val query = ParseQuery<ParseObject>(UserPreferenceTableNamespace.TABLE_NAME)
+            query.whereEqualTo(UserPreferenceTableNamespace.USER_ID, restaurantId)
+                .whereEqualTo(UserPreferenceTableNamespace.DATE, date)
+            return try{
+                val objects = query.find()
+                if(objects.isEmpty())
+                    null
+                else
+                    objects
+            }catch (e:Exception){
+                Log.d(TAG, e.message!!)
                 null
             }
         }
