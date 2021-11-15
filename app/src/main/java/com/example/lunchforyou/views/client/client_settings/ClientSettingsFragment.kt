@@ -25,6 +25,8 @@ class ClientSettingsFragment : Fragment() {
     private lateinit var textInput: EditText
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    val vm = ClientSettingsViewModel()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.cs_button_back).setOnClickListener {
@@ -54,6 +56,25 @@ class ClientSettingsFragment : Fragment() {
                 }
             }
         }
+
+        view.findViewById<Button>(R.id.cs_button_save).setOnClickListener {
+            vm.setDetails(
+                view.findViewById<EditText>(R.id.cs_input_address).text.toString(),
+                view.findViewById<EditText>(R.id.cs_input_name).text.toString(),
+                view.findViewById<EditText>(R.id.cs_input_surname).text.toString(),
+            )
+        }
+
+        vm.response.observe(viewLifecycleOwner,{
+            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+        })
+        vm.client.observe(viewLifecycleOwner,{
+            view.findViewById<EditText>(R.id.cs_input_address).setText(it.address)
+            view.findViewById<EditText>(R.id.cs_input_name).setText(it.name)
+            view.findViewById<EditText>(R.id.cs_input_surname).setText(it.surname)
+        })
+
+        vm.init()
     }
 
     private fun  giveResult(lat: Double, lon:Double ) {
