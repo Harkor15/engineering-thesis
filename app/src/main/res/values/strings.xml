@@ -64,5 +64,6 @@
     <string name="delivery_hours">Delivery hours</string>
     <string name="open_hours">Open hours</string>
     <string name="subscription_price_is_not_correct">Subscription price is not correct</string>
+    <string name="last_day_of_subscription">Last day of subscription</string>
 
 </resources>

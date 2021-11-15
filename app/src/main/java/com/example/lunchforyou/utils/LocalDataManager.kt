@@ -36,13 +36,30 @@ class LocalDataManager {
         }
     }
 
+    fun getSubscribedRestaurantToken():String?{
+        val token = MainActivity.contextOfApplication.getSharedPreferences(
+            SessionNamespace.PREFERENCE_KEY,Context.MODE_PRIVATE)
+            .getString(SessionNamespace.SUBSCRIBED_RESTAURANT_TOKEN,"")
+        return if (token !="")
+            token
+        else
+            null
+    }
+
+    fun setSubscribedRestaurantToken(token:String){
+        with (MainActivity.contextOfApplication.getSharedPreferences(
+            SessionNamespace.PREFERENCE_KEY,Context.MODE_PRIVATE).edit()){
+            putString(SessionNamespace.SUBSCRIBED_RESTAURANT_TOKEN,token)
+            apply()
+        }
+    }
+
     fun clearAllData(){
         with (MainActivity.contextOfApplication.getSharedPreferences(
             SessionNamespace.PREFERENCE_KEY,Context.MODE_PRIVATE).edit()){
             clear()
             commit()
         }
-
     }
 }
 
@@ -51,4 +68,5 @@ object SessionNamespace{
     const val PREFERENCE_KEY = "com.example.lunchforyou"
     const val USER_TOKEN = "USER_TOKEN"
     const val IS_RESTAURANT= "IS_RESTAURANT"
+    const val SUBSCRIBED_RESTAURANT_TOKEN = "SUBSCRIBED_RESTAURANT_TOKEN"
 }

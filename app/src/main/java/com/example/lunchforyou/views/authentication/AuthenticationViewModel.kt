@@ -68,8 +68,10 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
                     navigateToRestaurantMenu.value=true
                 }
             }else{
-                if(client.subscribedRestaurantToken!=null)
-                    navigateToClientMenu.value=true
+                if(client.subscribedRestaurantToken!=null) {
+                    navigateToClientMenu.value = true
+                    localDataManager.setSubscribedRestaurantToken(client.subscribedRestaurantToken!!)
+                }
                 else {
                     navigateToNewClientMenu.value = true
                     localDataManager.setIsUserRestaurant(false)

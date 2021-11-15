@@ -6,9 +6,10 @@ import com.parse.ParseQuery
 
 import com.parse.ParseObject
 import java.lang.Exception
+import java.util.*
 
 
-class DatabaseManager {
+        class DatabaseManager {
 
     companion object {
 
@@ -85,7 +86,7 @@ class DatabaseManager {
             }
         }
 
-        fun readUserPreference(restaurantId: String, date: String): List<ParseObject>? {
+        fun readUserPreference(restaurantId: String, date: Date): List<ParseObject>? {
             val query = ParseQuery<ParseObject>(UserPreferenceTableNamespace.TABLE_NAME)
             query.whereEqualTo(UserPreferenceTableNamespace.USER_ID, restaurantId)
                 .whereEqualTo(UserPreferenceTableNamespace.DATE, date)
@@ -97,6 +98,36 @@ class DatabaseManager {
                     objects
             }catch (e:Exception){
                 Log.d(TAG, e.message!!)
+                null
+            }
+        }
+
+        fun readClientSubscription(userId:String):ParseObject?{
+            val query = ParseQuery.getQuery<ParseObject>(SubscriptionTableNamespace.TABLE_NAME)
+            query.whereEqualTo(SubscriptionTableNamespace.USER_ID, userId)
+            return try {
+                val objects = query.find()
+                if (objects.isEmpty())
+                    null
+                else
+                    (objects.first())
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
+                null
+            }
+        }
+
+        fun readRestaurantSubscriptions(restaurantId:String):List<ParseObject>?{
+            val query = ParseQuery.getQuery<ParseObject>(SubscriptionTableNamespace.TABLE_NAME)
+            query.whereEqualTo(SubscriptionTableNamespace.RESTAURANT_ID, restaurantId)
+            return try {
+                val objects = query.find()
+                if (objects.isEmpty())
+                    null
+                else
+                    objects
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
                 null
             }
         }

@@ -1,11 +1,12 @@
 package com.example.lunchforyou.database
 
 import com.parse.ParseObject
+import java.util.*
 
 class UserPreference(var parseObject: ParseObject) {
     var id = parseObject.getString(UserPreferenceTableNamespace.ID)
     var userId = parseObject.getString(UserPreferenceTableNamespace.USER_ID)
-    var date = parseObject.getString(UserPreferenceTableNamespace.DATE)
+    var date = parseObject.getDate(UserPreferenceTableNamespace.DATE)
     var preferredOption = parseObject.getString(UserPreferenceTableNamespace.PREFERRED_OPTION)
     var status = parseObject.getString(UserPreferenceTableNamespace.STATUS)
     var note = parseObject.getString(UserPreferenceTableNamespace.NOTE)
@@ -24,7 +25,7 @@ class UserPreference(var parseObject: ParseObject) {
     companion object {
         suspend fun  create(
             userId: String,
-            date: String,
+            date: Date,
             preferredOption:String,
             status: String,
             note:String,
@@ -40,7 +41,7 @@ class UserPreference(var parseObject: ParseObject) {
             return DatabaseManager.save(createdParseObject)
         }
 
-        suspend fun read(restaurantId: String, date: String):List<UserPreference>? {
+        suspend fun read(restaurantId: String, date: Date):List<UserPreference>? {
             val response = DatabaseManager.readUserPreference(restaurantId, date)
             return if(response != null && response.isNotEmpty()){
                 val result = mutableListOf<UserPreference>()

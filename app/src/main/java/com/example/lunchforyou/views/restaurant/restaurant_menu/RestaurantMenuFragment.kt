@@ -24,7 +24,6 @@ class RestaurantMenuFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         }
         datePickerEdtx = view.findViewById(R.id.rmenu_date_picker)
             view.findViewById<ImageView>(R.id.rmenu_calendar_icon).setOnClickListener {
-
                 DatePickerDialog(requireContext(),this,
                     calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH)).show()

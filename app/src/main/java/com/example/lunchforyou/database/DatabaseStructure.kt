@@ -41,9 +41,8 @@ object SubscriptionTableNamespace{
     const val ID="id"
     const val RESTAURANT_ID="restaurantId"
     const val USER_ID="userId"
-    const val DAY_OD_BOUGHT="dayOfBought"
-    const val BOUGHT_DAYS="boughtDays"
-    const val DAYS_LEFT = "daysLeft"
+    const val DAY_OF_BOUGHT="dayOfBought"
+    const val LAST_DAY_OF_SUBSCRIPTION="lastDayOfSubscription"
 }
 
 object MenuDayTableNamespace{

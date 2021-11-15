@@ -21,7 +21,7 @@ class RestaurantTodayOrdersFragment : Fragment() {
             navController.popBackStack()
         }
         vm.data.observe(viewLifecycleOwner,{
-            view.findViewById<RecyclerView>(R.id.to_orders_list).adapter = RestaurantTodayOrdersAdapter(it)
+            view.findViewById<RecyclerView>(R.id.to_orders_list).adapter = RestaurantOrdersAdapter(it)
         })
         vm.init()
     }
