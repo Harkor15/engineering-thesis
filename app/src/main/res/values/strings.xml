@@ -65,5 +65,10 @@
     <string name="open_hours">Open hours</string>
     <string name="subscription_price_is_not_correct">Subscription price is not correct</string>
     <string name="last_day_of_subscription">Last day of subscription</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="is_subscription_active">"Is subscription active: "</string>
+    <string name="subscription_since">Subscription since:</string>
+    <string name="do_you_want_buy_additional_month_of_sub">Do you want buy additional month of subscription?</string>
 
 </resources>
