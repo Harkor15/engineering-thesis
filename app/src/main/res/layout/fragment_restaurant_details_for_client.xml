@@ -7,7 +7,7 @@
     tools:context=".views.client.client_restaurant_details.ClientRestaurantDetails">
 
     <TextView
-        android:id="@+id/cm_title2"
+        android:id="@+id/crd_restaurant_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cm_title2"
+        app:layout_constraintTop_toBottomOf="@id/crd_restaurant_name"
         app:layout_constraintVertical_bias="0.0">
 
         <ScrollView
@@ -47,20 +47,67 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/crd_subscription_price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text=" Poniedziałek 8:00 - 20:00 \n Wtorek 8:00 - 20:00 \n Środa 8:00 - 20:00 \n Czwartek 8:00 - 20:00 \n Piątek 8:00 - 20:00 \n Sobota nieczynne \n Niedziela: nieczynne"
+                    android:text="---"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView12"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/subscriptionPrice"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/crd_delivery_hours" />
+
+                <TextView
+                    android:id="@+id/crd_delivery_hours"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="---"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/delivery_hours"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/crd_oppening_hours" />
+
+                <TextView
+                    android:id="@+id/crd_oppening_hours"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="---"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -82,16 +129,16 @@
                     android:text="@string/openingHours"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toBottomOf="@+id/crd_address" />
 
                 <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/crd_address"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Rzeszów ul. Strażacka 111/11"
+                    android:text="---"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"

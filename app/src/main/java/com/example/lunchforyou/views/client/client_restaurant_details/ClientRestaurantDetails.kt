@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import com.example.lunchforyou.R
 
 
@@ -18,7 +19,11 @@ val vm =ClientRestaurantDetailsViewModel()
             activity?.onBackPressed()
         }
         vm.restaurantInfo.observe(viewLifecycleOwner,{
-            it.
+            view.findViewById<TextView>(R.id.crd_restaurant_name).text = it.name
+            view.findViewById<TextView>(R.id.crd_address).text = it.address
+            view.findViewById<TextView>(R.id.crd_delivery_hours).text = it.deliveryHours
+            view.findViewById<TextView>(R.id.crd_oppening_hours).text = it.openedHours
+            view.findViewById<TextView>(R.id.crd_subscription_price).text = it.subscriptionPrice
         })
 
         vm.init()
