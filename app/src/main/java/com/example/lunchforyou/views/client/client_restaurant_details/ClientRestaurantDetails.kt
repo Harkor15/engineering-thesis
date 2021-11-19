@@ -10,12 +10,18 @@ import com.example.lunchforyou.R
 
 
 class ClientRestaurantDetails : Fragment() {
+val vm =ClientRestaurantDetailsViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.rdfc_button_back).setOnClickListener {
             activity?.onBackPressed()
         }
+        vm.restaurantInfo.observe(viewLifecycleOwner,{
+            it.
+        })
+
+        vm.init()
     }
 
     override fun onCreateView(

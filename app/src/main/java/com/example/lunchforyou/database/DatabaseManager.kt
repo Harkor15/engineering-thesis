@@ -55,7 +55,7 @@ import java.util.*
             }
         }
 
-        fun readMenuDay(date: String, restaurantId: String):ParseObject?{
+        fun readMenuDay(date: Date, restaurantId: String):ParseObject?{
             val query = ParseQuery.getQuery<ParseObject>(MenuDayTableNamespace.TABLE_NAME)
             query.whereEqualTo(MenuDayTableNamespace.RESTAURANT_ID, restaurantId)
                 .whereEqualTo(MenuDayTableNamespace.DATE, date  )
@@ -65,6 +65,22 @@ import java.util.*
                     null
                 else
                     (objects.first())
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
+                null
+            }
+        }
+
+        fun readMenuDaySince(date: Date, restaurantId: String):List<ParseObject>?{
+            val query = ParseQuery.getQuery<ParseObject>(MenuDayTableNamespace.TABLE_NAME)
+            query.whereEqualTo(MenuDayTableNamespace.RESTAURANT_ID, restaurantId)
+                .whereGreaterThanOrEqualTo(MenuDayTableNamespace.DATE, date)
+            return try {
+                val objects = query.find()
+                if (objects.isEmpty())
+                    null
+                else
+                    objects
             }catch (e:Exception){
                 Log.d(TAG,e.message!!)
                 null
@@ -88,7 +104,7 @@ import java.util.*
 
         fun readUserPreference(restaurantId: String, date: Date): List<ParseObject>? {
             val query = ParseQuery<ParseObject>(UserPreferenceTableNamespace.TABLE_NAME)
-            query.whereEqualTo(UserPreferenceTableNamespace.USER_ID, restaurantId)
+            query.whereEqualTo(UserPreferenceTableNamespace.SUBSCRIBED_RESTAURANT, restaurantId)
                 .whereEqualTo(UserPreferenceTableNamespace.DATE, date)
             return try{
                 val objects = query.find()
@@ -101,6 +117,23 @@ import java.util.*
                 null
             }
         }
+
+        fun readUserPreferenceSince(time: Date, userId: String): List<ParseObject>? {
+            val query = ParseQuery<ParseObject>(UserPreferenceTableNamespace.TABLE_NAME)
+            query.whereEqualTo(UserPreferenceTableNamespace.USER_ID, userId)
+                .whereGreaterThanOrEqualTo(UserPreferenceTableNamespace.DATE, time)
+            return try{
+                val objects = query.find()
+                if(objects.isEmpty())
+                    null
+                else
+                    objects
+            }catch (e:Exception){
+                Log.d(TAG, e.message!!)
+                null
+            }
+        }
+
 
         fun readClientSubscription(userId:String):ParseObject?{
             val query = ParseQuery.getQuery<ParseObject>(SubscriptionTableNamespace.TABLE_NAME)
@@ -165,6 +198,7 @@ import java.util.*
         fun setMenu(restaurantId: String, day:String){
 
         }
+
 
 
 

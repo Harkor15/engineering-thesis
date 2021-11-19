@@ -57,6 +57,7 @@ object MenuDayTableNamespace{
 object UserPreferenceTableNamespace{
     const val TABLE_NAME = "UserPreference"
     const val ID ="id"
+    const val SUBSCRIBED_RESTAURANT="subscribedRestaurant"
     const val USER_ID="userId"
     const val DATE="date"
     const val NOTE="note"

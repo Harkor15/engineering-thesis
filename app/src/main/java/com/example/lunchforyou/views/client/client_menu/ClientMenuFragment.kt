@@ -6,15 +6,48 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.TextView
 import com.example.lunchforyou.R
+import java.text.SimpleDateFormat
 
 class ClientMenuFragment : Fragment() {
+    val vm = ClientMenuViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val option1 =view.findViewById<TextView>(R.id.cmenu_option1)
+        val option2 =view.findViewById<TextView>(R.id.cmenu_option2)
+        val note =view.findViewById<TextView>(R.id.cmenu_edtx_note)
+        val date =view.findViewById<TextView>(R.id.cmenu_date)
+        val radioButton1 = view.findViewById<RadioButton>(R.id.cmenu_radio_1)
+        val radioButton2 = view.findViewById<RadioButton>(R.id.cmenu_radio_2)
+
         view.findViewById<Button>(R.id.cmenu_button_back).setOnClickListener {
             activity?.onBackPressed()
         }
+        view.findViewById<Button>(R.id.cmenu_btn_save).setOnClickListener {
+            val selectedOption =  if(radioButton2.isChecked)
+                option2.text.toString()
+            else
+                option1.text.toString()
+
+            vm.setPreference(selectedOption, note.text.toString()
+            )
+        }
+        vm.menu.observe(viewLifecycleOwner,{
+            option1.text = it.option1
+            option2.text = it.option2
+            val sdf = SimpleDateFormat("dd.MM.yyyy")
+            date.text = sdf.format(it.date!!)
+        })
+        vm.userPreference.observe(viewLifecycleOwner,{
+            radioButton1.isChecked=it.preferredOption==option1.text.toString()
+            radioButton2.isChecked=it.preferredOption==option2.text.toString()
+            note.text = it.note
+        })
+
     }
 
     override fun onCreateView(

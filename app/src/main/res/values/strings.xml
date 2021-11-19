@@ -70,5 +70,8 @@
     <string name="is_subscription_active">"Is subscription active: "</string>
     <string name="subscription_since">Subscription since:</string>
     <string name="do_you_want_buy_additional_month_of_sub">Do you want buy additional month of subscription?</string>
+    <string name="menu_is_not_avaliable_yet">Menu is not avaliable yet</string>
+    <string name="saved">Saved</string>
+    <string name="selected_option">Selected option</string>
 
 </resources>
