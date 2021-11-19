@@ -73,5 +73,8 @@
     <string name="menu_is_not_avaliable_yet">Menu is not avaliable yet</string>
     <string name="saved">Saved</string>
     <string name="selected_option">Selected option</string>
+    <string name="you_have_no_susbscription_for_this_day">You have no subscription for this day</string>
+    <string name="restaurant_token">Restaurant token</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
 
 </resources>

@@ -13,8 +13,8 @@ import java.util.*
 
 class ClientMenuViewModel:ViewModel() {
     private lateinit var selectedDay : Date
-    val userId = LocalDataManager().getUserToken()
-    val subscribedRestaurantId = LocalDataManager().getSubscribedRestaurantToken()
+    private val userId = LocalDataManager().getUserToken()
+    private val subscribedRestaurantId = LocalDataManager().getSubscribedRestaurantToken()
 
     val userPreference = MutableLiveData<UserPreference>()
     val menu = MutableLiveData<MenuDay>()
@@ -33,24 +33,36 @@ class ClientMenuViewModel:ViewModel() {
     }
 
     fun setPreference(option:String, note:String){
-        if(userPreference.value!=null){
-            userPreference.value!!.preferredOption=option
+        val subExpiration = LocalDataManager().getSubscriptionExpiration()
+        if(subExpiration!=null && subExpiration>=selectedDay) {
+            if (userPreference.value != null) {
+                userPreference.value!!.preferredOption = option
                 viewModelScope.launch {
-                    val result= userPreference.value!!.update()
-                    if(result)
-                        info.value=R.string.saved
-                    else
-                        info.value = R.string.error
-                }
-        }else{
-            if(!userId.isNullOrBlank()&& !subscribedRestaurantId.isNullOrBlank())
-                viewModelScope.launch {
-                    val result = UserPreference.create(userId, subscribedRestaurantId, selectedDay, option, "",note)
-                    if(result)
+                    val result = userPreference.value!!.update()
+                    if (result)
                         info.value = R.string.saved
                     else
                         info.value = R.string.error
                 }
+            } else {
+                if (!userId.isNullOrBlank() && !subscribedRestaurantId.isNullOrBlank())
+                    viewModelScope.launch {
+                        val result = UserPreference.create(
+                            userId,
+                            subscribedRestaurantId,
+                            selectedDay,
+                            option,
+                            "",
+                            note
+                        )
+                        if (result)
+                            info.value = R.string.saved
+                        else
+                            info.value = R.string.error
+                    }
+            }
+        }else{
+            info.value=R.string.you_have_no_susbscription_for_this_day
         }
     }
 

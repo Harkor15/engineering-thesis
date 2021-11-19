@@ -6,10 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.lunchforyou.R
 import com.example.lunchforyou.database.Client
 import com.example.lunchforyou.database.Restaurant
+import com.example.lunchforyou.database.Subscription
 import com.example.lunchforyou.utils.LocalDataManager
 import com.example.lunchforyou.utils.AuthService
 import com.example.lunchforyou.utils.SignInCallback
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.time.days
 
 class AuthenticationViewModel:SignInCallback, ViewModel() {
     val signInInfo = MutableLiveData<Int>()
@@ -73,9 +76,19 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
                     localDataManager.setSubscribedRestaurantToken(client.subscribedRestaurantToken!!)
                 }
                 else {
-                    navigateToNewClientMenu.value = true
                     localDataManager.setIsUserRestaurant(false)
                     localDataManager.setUserToken(uid)
+                    val subscription = Subscription.readClientSubscription(uid)
+                    if(subscription?.lastDayOfSub != null){
+                        val calendar = Calendar.getInstance()
+                        calendar.time= subscription.lastDayOfSub!!
+                        localDataManager.setSubscriptionExpiration(
+                            calendar.get(Calendar.DAY_OF_MONTH),
+                            calendar.get(Calendar.MONTH),
+                            calendar.get(Calendar.YEAR),
+                            )
+                    }
+                    navigateToNewClientMenu.value = true
                 }
             }
         }

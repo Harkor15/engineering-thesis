@@ -60,10 +60,10 @@ class NewClientMainFragment : Fragment() {
             Toast.makeText(requireContext(),toastInfo,Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.saveRestaurantResult.observe(viewLifecycleOwner,{
+        /*viewModel.saveRestaurantResult.observe(viewLifecycleOwner,{
             btnSaveRestaurantCode.isEnabled=true
 
-        })
+        })*/
 
         viewModel.navigateToMainRestaurant.observe(viewLifecycleOwner,{
             navController.navigate(R.id.action_newClientMainFragment_to_restaurantMain)

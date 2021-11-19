@@ -174,7 +174,7 @@ import java.util.*
                 false
             }
         }
-
+/*
         fun getRestaurantSubscribers(id: String){
 
         }
@@ -202,6 +202,6 @@ import java.util.*
 
 
 
-        private const val RESTAURANT_TABLE = "Restaurant"
+        private const val RESTAURANT_TABLE = "Restaurant"*/
     }
 }

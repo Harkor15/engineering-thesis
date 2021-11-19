@@ -16,7 +16,7 @@ class NewClientMainViewModel:ViewModel() {
     var navigateToMainRestaurant = MutableLiveData<Boolean>()
     var subscribedRestaurant = MutableLiveData<String>()
     var saveClientPersonalDataResult = MutableLiveData<Boolean>()
-    var saveRestaurantResult = MutableLiveData<Boolean>()
+    //var saveRestaurantResult = MutableLiveData<Boolean>()
     var displayClientPersonalData = MutableLiveData<Client>()
     var client: Client? = null
     private val token = AuthService().checkCurrentUser()
@@ -73,16 +73,18 @@ class NewClientMainViewModel:ViewModel() {
                     if (restaurant != null) {
                         client!!.subscribedRestaurantToken = token
                         subscribedRestaurant.value = restaurant.name
-                        saveRestaurantResult.value=true
+                        //saveRestaurantResult.value=true
+                        navigateToMainClient.value=true
+
                     }else{
-                        saveRestaurantResult.value=false
+                        //saveRestaurantResult.value=false
                     }
                 }else{
-                    saveRestaurantResult.value=false
+                    //saveRestaurantResult.value=false
                 }
             }
         }else{
-            saveRestaurantResult.value=false
+            //saveRestaurantResult.value=false
         }
     }
 

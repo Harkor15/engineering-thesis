@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.TextView
+import android.widget.*
 import com.example.lunchforyou.R
 import java.text.SimpleDateFormat
 
@@ -46,6 +43,9 @@ class ClientMenuFragment : Fragment() {
             radioButton1.isChecked=it.preferredOption==option1.text.toString()
             radioButton2.isChecked=it.preferredOption==option2.text.toString()
             note.text = it.note
+        })
+        vm.info.observe(viewLifecycleOwner,{
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
     }

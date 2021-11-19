@@ -28,7 +28,9 @@ class RestaurantHistoryViewModel: ViewModel() {
         val restaurantId = LocalDataManager().getUserToken()
         if(restaurantId!=null){
             viewModelScope.launch {
-                data.value= UserPreference.read(restaurantId, date.value!!)
+                val preferences = UserPreference.read(restaurantId, date.value!!)
+                if(preferences!=null)
+                    data.value= preferences!!
             }
         }
     }
