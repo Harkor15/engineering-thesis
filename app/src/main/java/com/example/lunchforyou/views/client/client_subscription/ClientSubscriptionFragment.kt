@@ -10,15 +10,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation
 import com.example.lunchforyou.R
 
 class ClientSubscriptionFragment : Fragment() {
-    val vm = ClientSubscriptionViewModel()
+    private val vm = ClientSubscriptionViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.csu_button_back).setOnClickListener {
-            activity?.onBackPressed()
+            val navController = Navigation.findNavController(view)
+            navController.popBackStack()
         }
         vm.restaurantName.observe(viewLifecycleOwner,{
             view.findViewById<TextView>(R.id.csu_restaurant_name).text = it
@@ -27,10 +29,10 @@ class ClientSubscriptionFragment : Fragment() {
             view.findViewById<TextView>(R.id.csu_sub_active).setText(it)
         })
         vm.subscriptionUntil.observe(viewLifecycleOwner,{
-            view.findViewById<TextView>(R.id.csu_sub_last_day)
+            view.findViewById<TextView>(R.id.csu_sub_last_day).text=it
         })
         vm.subscriptionSince.observe(viewLifecycleOwner,{
-            view.findViewById<TextView>(R.id.csu_sub_since)
+            view.findViewById<TextView>(R.id.csu_sub_since).text=it
         })
         vm.toast.observe(viewLifecycleOwner,{
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
@@ -42,15 +44,15 @@ class ClientSubscriptionFragment : Fragment() {
             builder.setPositiveButton(R.string.yes,  DialogInterface.OnClickListener { _, _ ->
                 vm.extendSub()
             })
+            builder.show()
         }
-
+        vm.init()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_client_subscription, container, false)
     }
 

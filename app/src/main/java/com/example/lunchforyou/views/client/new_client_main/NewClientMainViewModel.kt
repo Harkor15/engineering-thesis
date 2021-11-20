@@ -65,17 +65,22 @@ class NewClientMainViewModel:ViewModel() {
         }
     }
 
-    fun setSubscribedRestaurantToken(token:String){
-        if(token.isNotBlank()) {
+    fun setSubscribedRestaurantToken(restaurantToken:String){
+        if(restaurantToken.isNotBlank()) {
             viewModelScope.launch {
                 if (client != null) {
-                    val restaurant = Restaurant.read(token)
+                    val restaurant = Restaurant.read(restaurantToken)
                     if (restaurant != null) {
-                        client!!.subscribedRestaurantToken = token
-                        subscribedRestaurant.value = restaurant.name
-                        //saveRestaurantResult.value=true
-                        navigateToMainClient.value=true
-
+                        client!!.subscribedRestaurantToken = restaurantToken
+                        val result = client!!.update()
+                        if(result) {
+                            subscribedRestaurant.value = restaurant.name
+                            val localDataManager = LocalDataManager()
+                            localDataManager.setSubscribedRestaurantToken(restaurantToken)
+                            localDataManager.setIsUserRestaurant(false)
+                            localDataManager.setUserToken(client!!.token!!)
+                            navigateToMainClient.value = true
+                        }
                     }else{
                         //saveRestaurantResult.value=false
                     }

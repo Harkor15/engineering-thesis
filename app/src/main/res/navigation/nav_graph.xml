@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_clientMain_to_clientMessagesFragment"
             app:destination="@id/clientMessagesFragment" />
+        <action
+            android:id="@+id/action_clientMain_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRestaurantFragment"

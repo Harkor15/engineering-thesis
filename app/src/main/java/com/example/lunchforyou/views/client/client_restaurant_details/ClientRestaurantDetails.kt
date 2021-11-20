@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.example.lunchforyou.R
 
 
@@ -16,7 +17,8 @@ val vm =ClientRestaurantDetailsViewModel()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.rdfc_button_back).setOnClickListener {
-            activity?.onBackPressed()
+            val navController = Navigation.findNavController(view)
+            navController.popBackStack()
         }
         vm.restaurantInfo.observe(viewLifecycleOwner,{
             view.findViewById<TextView>(R.id.crd_restaurant_name).text = it.name

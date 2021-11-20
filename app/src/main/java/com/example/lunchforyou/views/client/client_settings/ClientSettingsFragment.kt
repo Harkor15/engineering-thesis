@@ -11,8 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import com.example.lunchforyou.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -25,15 +27,16 @@ class ClientSettingsFragment : Fragment() {
     private lateinit var textInput: EditText
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    val vm = ClientSettingsViewModel()
+    private val vm = ClientSettingsViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.cs_button_back).setOnClickListener {
-            activity?.onBackPressed()
+            val navController = Navigation.findNavController(view)
+            navController.popBackStack()
         }
         textInput = view.findViewById(R.id.cs_input_address)
-        view.findViewById<Button>(R.id.cs_button_gps).setOnClickListener{
+        view.findViewById<ImageView>(R.id.cs_button_gps).setOnClickListener{
             when {
                 ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -59,9 +62,9 @@ class ClientSettingsFragment : Fragment() {
 
         view.findViewById<Button>(R.id.cs_button_save).setOnClickListener {
             vm.setDetails(
-                view.findViewById<EditText>(R.id.cs_input_address).text.toString(),
                 view.findViewById<EditText>(R.id.cs_input_name).text.toString(),
                 view.findViewById<EditText>(R.id.cs_input_surname).text.toString(),
+                view.findViewById<EditText>(R.id.cs_input_address).text.toString(),
             )
         }
 

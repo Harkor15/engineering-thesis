@@ -36,16 +36,28 @@ class ClientSubscriptionViewModel: ViewModel() {
                 val restaurant = Restaurant.read(subscription!!.restaurantId!!)
                 if(restaurant!=null){
                     restaurantName.value=restaurant.name
-                    subscriptionActive.value=if (subscription!!.lastDayOfSub!!<= today){
-                        R.string.yes
+                    if (subscription!!.lastDayOfSub!!>= today){
+                        subscriptionActive.value= R.string.yes
                     }else{
-                        R.string.no
+                        subscriptionActive.value= R.string.no
                     }
                     val dateFormat = SimpleDateFormat("dd-MM-yyyy")
                     subscriptionUntil.value = dateFormat.format( subscription!!.lastDayOfSub!!)
                     subscriptionSince.value = dateFormat.format( subscription!!.dayOfBought!!)
                 }
             }
+        }
+    }
+
+    private fun saveSubToLocalDb(){
+        if(subscription!=null){
+            val cal = Calendar.getInstance()
+            cal.time = subscription!!.lastDayOfSub
+            LocalDataManager().setSubscriptionExpiration(
+                cal.get(Calendar.DAY_OF_MONTH),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.YEAR)
+            )
         }
     }
 
@@ -60,6 +72,7 @@ class ClientSubscriptionViewModel: ViewModel() {
                     val result = Subscription.create(restaurantId, userId, today, cal.time)
                     if(result){
                         loadSubscription()
+                        saveSubToLocalDb()
                     }
                 }
             }
@@ -70,8 +83,10 @@ class ClientSubscriptionViewModel: ViewModel() {
             c.add(Calendar.MONTH, 1)
             subscription!!.lastDayOfSub=c.time
             viewModelScope.launch {
-                if(subscription!!.update())
+                if(subscription!!.update()) {
                     loadSubscription()
+                    saveSubToLocalDb()
+                }
             }
         }
     }

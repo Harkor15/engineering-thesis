@@ -20,6 +20,7 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
     val navigateToRestaurantMenu = MutableLiveData<Boolean>()
     val navigateToNewClientMenu = MutableLiveData<Boolean>()
     val showToast = MutableLiveData<Int>()
+    private val localDataManager = LocalDataManager()
 
     fun init(){
         val userToken = LocalDataManager().getUserToken()
@@ -57,41 +58,67 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
         }
     }
 
-    override fun onUserSignInResult(uid: String) {
+    override fun onUserSignInResult(token: String) {
         viewModelScope.launch {
-            val localDataManager = LocalDataManager()
-            val client = Client.read(uid)
+
+            val client = Client.read(token)
             if(client==null){
-                val restaurant = Restaurant.read(uid)
+                val restaurant = Restaurant.read(token)
                 if(restaurant==null){
-                    navigateToNewClientMenu.value=true
+                    navigateToNewClientMenu.value = true
                 }else{
-                    localDataManager.setIsUserRestaurant(true)
-                    localDataManager.setUserToken(uid)
-                    navigateToRestaurantMenu.value=true
+                    handleRestaurant(token)
                 }
             }else{
                 if(client.subscribedRestaurantToken!=null) {
-                    navigateToClientMenu.value = true
-                    localDataManager.setSubscribedRestaurantToken(client.subscribedRestaurantToken!!)
+                    handleClient(token, client.subscribedRestaurantToken!!)
                 }
                 else {
-                    localDataManager.setIsUserRestaurant(false)
-                    localDataManager.setUserToken(uid)
-                    val subscription = Subscription.readClientSubscription(uid)
-                    if(subscription?.lastDayOfSub != null){
-                        val calendar = Calendar.getInstance()
-                        calendar.time= subscription.lastDayOfSub!!
-                        localDataManager.setSubscriptionExpiration(
-                            calendar.get(Calendar.DAY_OF_MONTH),
-                            calendar.get(Calendar.MONTH),
-                            calendar.get(Calendar.YEAR),
-                            )
-                    }
-                    navigateToNewClientMenu.value = true
+                    handleNewClient(token)
                 }
             }
         }
+    }
+
+    private suspend fun handleNewClient(token: String) {
+        localDataManager.setIsUserRestaurant(false)
+        localDataManager.setUserToken(token)
+        val subscription = Subscription.readClientSubscription(token)
+        if (subscription?.lastDayOfSub != null) {
+            val calendar = Calendar.getInstance()
+            calendar.time = subscription.lastDayOfSub!!
+            localDataManager.setSubscriptionExpiration(
+                calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.YEAR),
+            )
+        }
+        navigateToNewClientMenu.value = true
+    }
+
+    private fun handleClient(token:String, subscribedRestaurantToken:String){
+        localDataManager.setIsUserRestaurant(false)
+        localDataManager.setUserToken(token)
+        viewModelScope.launch {
+            val subscription = Subscription.readClientSubscription(token)
+            if (subscription?.lastDayOfSub != null) {
+                val calendar = Calendar.getInstance()
+                calendar.time = subscription.lastDayOfSub!!
+                localDataManager.setSubscriptionExpiration(
+                    calendar.get(Calendar.DAY_OF_MONTH),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.YEAR),
+                )
+            }
+        }
+        localDataManager.setSubscribedRestaurantToken(subscribedRestaurantToken)
+        navigateToClientMenu.value = true
+    }
+
+    private fun handleRestaurant(token: String){
+        localDataManager.setIsUserRestaurant(true)
+        localDataManager.setUserToken(token)
+        navigateToRestaurantMenu.value=true
     }
 
     override fun onUserSignInFailure() {

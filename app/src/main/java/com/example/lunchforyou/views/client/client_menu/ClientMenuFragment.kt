@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.navigation.Navigation
 import com.example.lunchforyou.R
 import java.text.SimpleDateFormat
 
 class ClientMenuFragment : Fragment() {
-    val vm = ClientMenuViewModel()
+    private val vm = ClientMenuViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,7 +23,8 @@ class ClientMenuFragment : Fragment() {
         val radioButton2 = view.findViewById<RadioButton>(R.id.cmenu_radio_2)
 
         view.findViewById<Button>(R.id.cmenu_button_back).setOnClickListener {
-            activity?.onBackPressed()
+            val navController = Navigation.findNavController(view)
+            navController.popBackStack()
         }
         view.findViewById<Button>(R.id.cmenu_btn_save).setOnClickListener {
             val selectedOption =  if(radioButton2.isChecked)
@@ -47,6 +49,7 @@ class ClientMenuFragment : Fragment() {
         vm.info.observe(viewLifecycleOwner,{
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
+        vm.init()
 
     }
 

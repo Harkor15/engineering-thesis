@@ -47,8 +47,7 @@ class ClientMainFragment : Fragment() {
         }
 
         viewModel.backToLoginFragment.observe(viewLifecycleOwner,{
-            navController.navigateUp()
-            //navController.popBackStack()
+            navController.navigate(R.id.action_clientMain_to_authenticationFragment)
         })
 
         viewModel.init()
