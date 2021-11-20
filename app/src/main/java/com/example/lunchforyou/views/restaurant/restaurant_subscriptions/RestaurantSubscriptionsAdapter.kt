@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lunchforyou.R
 import com.example.lunchforyou.database.Subscription
+import java.text.SimpleDateFormat
 
 class RestaurantSubscriptionsAdapter(private val data: List<Subscription>):
     RecyclerView.Adapter<RestaurantSubscriptionsAdapter.ViewHolder>(){
@@ -25,9 +26,10 @@ class RestaurantSubscriptionsAdapter(private val data: List<Subscription>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
+        val sdf = SimpleDateFormat("dd.MM.yyyy")
         holder.subscriber.text=data[pos].userId
-        holder.subsSince.text=data[pos].dayOfBought.toString()
-        holder.endDate.text=data[pos].lastDayOfSub.toString()
+        holder.subsSince.text=sdf.format(data[pos].dayOfBought!!)
+        holder.endDate.text=sdf.format(data[pos].lastDayOfSub!!)
     }
 
     override fun getItemCount(): Int {

@@ -84,7 +84,7 @@ class NewClientMainFragment : Fragment() {
         }
 
         btnSaveRestaurantCode.setOnClickListener {
-            btnSaveRestaurantCode.isEnabled=false
+            //btnSaveRestaurantCode.isEnabled=false
             viewModel.setSubscribedRestaurantToken(
                 view.findViewById<EditText>(R.id.ncm_edtx_restaurant_code).text.toString()
             )

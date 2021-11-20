@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -31,66 +32,68 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="@string/address"
+            app:layout_constraintBottom_toBottomOf="@+id/rtoi_address"
             app:layout_constraintStart_toStartOf="@+id/rtoi_name"
-            app:layout_constraintTop_toBottomOf="@+id/rtoi_name" />
+            app:layout_constraintTop_toTopOf="@+id/rtoi_address" />
 
         <TextView
             android:id="@+id/rtoi_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="---"
-            app:layout_constraintBottom_toBottomOf="@+id/rtoi_address_title"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/rtoi_address_title"
-            app:layout_constraintTop_toTopOf="@+id/rtoi_address_title" />
+            app:layout_constraintTop_toBottomOf="@+id/rtoi_name" />
 
         <TextView
             android:id="@+id/textView58"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="@string/order"
+            app:layout_constraintBottom_toBottomOf="@+id/rtoi_option"
             app:layout_constraintStart_toEndOf="@+id/rtoi_name"
             app:layout_constraintStart_toStartOf="@+id/rtoi_name"
-            app:layout_constraintTop_toBottomOf="@+id/rtoi_address" />
+            app:layout_constraintTop_toTopOf="@+id/rtoi_option" />
 
         <TextView
             android:id="@+id/rtoi_option"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="---"
-            app:layout_constraintBottom_toBottomOf="@+id/textView58"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView58"
-            app:layout_constraintTop_toTopOf="@+id/textView58" />
+            app:layout_constraintTop_toBottomOf="@+id/rtoi_address" />
 
         <TextView
             android:id="@+id/textView60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="@string/note"
+            app:layout_constraintBottom_toBottomOf="@+id/rtoi_note"
             app:layout_constraintStart_toStartOf="@+id/rtoi_name"
-            app:layout_constraintTop_toBottomOf="@+id/rtoi_option" />
+            app:layout_constraintTop_toTopOf="@+id/rtoi_note" />
 
         <TextView
             android:id="@+id/rtoi_note"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="---"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView60"
-            app:layout_constraintTop_toTopOf="@+id/textView60" />
+            app:layout_constraintTop_toBottomOf="@+id/rtoi_option" />
 
         <TextView
             android:id="@+id/textView62"
@@ -100,19 +103,21 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/status"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/rtoi_status"
             app:layout_constraintStart_toStartOf="@+id/rtoi_name"
-            app:layout_constraintTop_toBottomOf="@+id/rtoi_note" />
+            app:layout_constraintTop_toTopOf="@+id/rtoi_status" />
 
         <TextView
             android:id="@+id/rtoi_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="---"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView62"
-            app:layout_constraintTop_toTopOf="@+id/textView62" />
+            app:layout_constraintTop_toBottomOf="@+id/rtoi_note" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

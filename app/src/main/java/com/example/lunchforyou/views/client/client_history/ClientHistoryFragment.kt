@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lunchforyou.R
 
@@ -21,7 +22,9 @@ class ClientHistoryFragment : Fragment() {
             navController.popBackStack()
         }
         vm.userPreferences.observe(viewLifecycleOwner,{
-            view.findViewById<RecyclerView>(R.id.ch_history_list).adapter = ClientHistoryAdapter(it)
+            val recyclerView = view.findViewById<RecyclerView>(R.id.ch_history_list)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = ClientHistoryAdapter(it)
         })
 
         vm.init()

@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lunchforyou.R
 
 class RestaurantSubscriptionsFragment : Fragment() {
-val vm = RestaurantSubscriptionsViewModel()
+private val vm = RestaurantSubscriptionsViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,20 +22,23 @@ val vm = RestaurantSubscriptionsViewModel()
             navController.popBackStack()
         }
         vm.activeSubscribers.observe(viewLifecycleOwner,{
-            view.findViewById<TextView>(R.id.rsub_active_subs).setText(it)
+            view.findViewById<TextView>(R.id.rsub_active_subs).text = it.toString()
         })
         vm.allSubscribers.observe(viewLifecycleOwner,{
-            view.findViewById<TextView>(R.id.rsub_all_subs).setText(it)
+            view.findViewById<TextView>(R.id.rsub_all_subs).text = it.toString()
         })
         vm.lostSubscribers.observe(viewLifecycleOwner,{
-            view.findViewById<TextView>(R.id.rsub_lost_subs).setText(it)
+            view.findViewById<TextView>(R.id.rsub_lost_subs).text = it.toString()
         })
         vm.newSubscribers.observe(viewLifecycleOwner,{
-            view.findViewById<TextView>(R.id.rsub_new_subs).setText(it)
+            view.findViewById<TextView>(R.id.rsub_new_subs).text = it.toString()
         })
         vm.subscribers.observe(viewLifecycleOwner,{
-            view.findViewById<RecyclerView>(R.id.rsub_sub_list).adapter=RestaurantSubscriptionsAdapter(it)
+            val recyclerView = view.findViewById<RecyclerView>(R.id.rsub_sub_list)
+            recyclerView.layoutManager=LinearLayoutManager(requireContext())
+            recyclerView.adapter = RestaurantSubscriptionsAdapter(it)
         })
+        vm.init()
     }
 
     override fun onCreateView(

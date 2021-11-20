@@ -11,6 +11,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lunchforyou.R
 import com.example.lunchforyou.views.restaurant.restaurant_today_orders.RestaurantOrdersAdapter
@@ -37,10 +38,12 @@ class RestaurantHistoryFragment : Fragment(), DatePickerDialog.OnDateSetListener
             view.findViewById<EditText>(R.id.rh_date_picker).setText(simpleDate.format(it))
         })
         vm.data.observe(viewLifecycleOwner,{
-            view.findViewById<RecyclerView>(R.id.rh_orders_list).adapter= RestaurantOrdersAdapter(it)
+            val recyclerView = view.findViewById<RecyclerView>(R.id.rh_orders_list)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter= RestaurantOrdersAdapter(it)
         })
 
-        //vm.init()
+        vm.init()
     }
 
     override fun onCreateView(
@@ -52,7 +55,7 @@ class RestaurantHistoryFragment : Fragment(), DatePickerDialog.OnDateSetListener
     }
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
-        vm.setDate(p1,p2,p3)
+        vm.setDate(p3,p2,p1)
     }
 
 

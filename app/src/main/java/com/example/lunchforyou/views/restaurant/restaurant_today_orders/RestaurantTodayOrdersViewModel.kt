@@ -15,19 +15,17 @@ class RestaurantTodayOrdersViewModel: ViewModel() {
         val restaurantId = LocalDataManager().getUserToken()
         if(restaurantId!=null){
             viewModelScope.launch {
-                val preferences =UserPreference.read(restaurantId, Calendar.getInstance().time)
+                val cal = Calendar.getInstance()
+                cal.set(Calendar.HOUR, 0)
+                cal.set(Calendar.MINUTE, 0)
+                cal.set(Calendar.SECOND, 0)
+                cal.set(Calendar.MILLISECOND, 0)
+                val preferences =UserPreference.read(restaurantId, cal.time)
                 if(preferences!=null)
                     data.value=preferences!!
             }
         }
     }
 
-    private fun getTodayString():String{
-        val calendar = Calendar.getInstance()
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val month = calendar.get(Calendar.MONTH)
-        val year = calendar.get(Calendar.YEAR)
-        return "$day.$month.$year"
-    }
 
 }

@@ -37,6 +37,9 @@ class RestaurantSubscriptionsViewModel: ViewModel() {
             val calendar = Calendar.getInstance()
             val today = calendar.time
             calendar.set(Calendar.DAY_OF_MONTH,1)
+            calendar.set(Calendar.HOUR,0)
+            calendar.set(Calendar.MINUTE,0)
+            calendar.set(Calendar.MILLISECOND,0)
             val firstDayOfThisMonth = calendar.time
             allSubscribers.value = subscribers.value!!.size
             subscribers.value!!.forEach{
@@ -47,7 +50,7 @@ class RestaurantSubscriptionsViewModel: ViewModel() {
                         lostS++
                 }
                 if(it.dayOfBought!=null)
-                    if(it.dayOfBought!!>today)
+                    if(it.dayOfBought!!>firstDayOfThisMonth)
                         newS++
                 activeSubscribers.value=activeS
                 lostSubscribers.value=lostS

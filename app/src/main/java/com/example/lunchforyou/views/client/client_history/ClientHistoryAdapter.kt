@@ -17,7 +17,7 @@ RecyclerView.Adapter<ClientHistoryAdapter.ViewHolder>(){
         val date = view.findViewById<TextView>(R.id.coi_date)
         val option = view.findViewById<TextView>(R.id.coi_selected_option)
         val status = view.findViewById<TextView>(R.id.coi_status)
-        val note = view.findViewById<TextView>(R.id.ar_codeInput)
+        val note = view.findViewById<TextView>(R.id.coi_note)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
