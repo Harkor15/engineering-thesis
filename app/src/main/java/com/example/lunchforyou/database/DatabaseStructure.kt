@@ -1,20 +1,5 @@
 package com.example.lunchforyou.database
 
-import com.parse.ParseObject
-
-/*
-data class Subscription(val id:String,val restaurantId:String, val userId:String,
-                        val boughtDate:String, val boughtDays:Int, val daysLeft:Int)
-
-data class UserPreference(val id:String, val userId: String, val menuDayId:String,
-                          val preferredSoups:List<Int>, val preferredMainCourses:List<Int>,
-                          val status:String)
-
-data class Message(val id:String, val clientId:String, val restaurantId:String,
-                   val isFromClient:Boolean, val message:String )
-*/
-
-
 object ClientTableNamespace{
     const val TABLE_NAME = "Client"
     const val ID = "id"
@@ -66,11 +51,12 @@ object UserPreferenceTableNamespace{
     const val STATUS="status"
 }
 
-object MessageTAbleNamespace{
+object MessageTableNamespace{
     const val TABLE_NAME = "Message"
     const val ID= "id"
     const val CLIENT_ID="clientId"
     const val RESTAURANT_ID="restaurantId"
     const val IS_FROM_CLIENT="isFromClient"
     const val MESSAGE="message"
+    const val DATE ="date"
 }

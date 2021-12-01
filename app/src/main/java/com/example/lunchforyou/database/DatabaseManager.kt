@@ -134,6 +134,36 @@ import java.util.*
             }
         }
 
+        fun readAllRestaurantMessages(restaurantId:String):List<ParseObject>?{
+            val query = ParseQuery<ParseObject>(MessageTableNamespace.TABLE_NAME)
+            query.whereEqualTo(MessageTableNamespace.RESTAURANT_ID, restaurantId)
+            return try{
+                val objects = query.find()
+                if(objects.isEmpty())
+                    null
+                else
+                    objects
+            }catch (e:Exception){
+                Log.d(TAG, e.message!!)
+                null
+            }
+        }
+
+        fun readClientMessages(clientId:String):List<ParseObject>?{
+            val query = ParseQuery<ParseObject>(MessageTableNamespace.TABLE_NAME)
+            query.whereEqualTo(MessageTableNamespace.CLIENT_ID, clientId)
+            return try{
+                val objects = query.find()
+                if(objects.isEmpty())
+                    null
+                else
+                    objects
+            }catch (e:Exception){
+                Log.d(TAG, e.message!!)
+                null
+            }
+        }
+
 
         fun readClientSubscription(userId:String):ParseObject?{
             val query = ParseQuery.getQuery<ParseObject>(SubscriptionTableNamespace.TABLE_NAME)

@@ -76,5 +76,6 @@
     <string name="you_have_no_susbscription_for_this_day">You have no subscription for this day</string>
     <string name="restaurant_token">Restaurant token</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="success">Success</string>
 
 </resources>
