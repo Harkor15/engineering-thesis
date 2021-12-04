@@ -50,8 +50,8 @@ class Message(var parseObject: ParseObject) {
             }
         }
 
-        suspend fun readRestaurantMessages(restaurantId:String):List<Message>?{
-            val response = DatabaseManager.readAllRestaurantMessages(restaurantId)
+        suspend fun readRestaurantMessages(restaurantId:String, clientId: String):List<Message>?{
+            val response = DatabaseManager.readAllRestaurantMessages(restaurantId, clientId)
             return if(response!=null && response.isNotEmpty()){
                 val result = mutableListOf<Message>()
                 response.forEach {

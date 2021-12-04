@@ -134,9 +134,10 @@ import java.util.*
             }
         }
 
-        fun readAllRestaurantMessages(restaurantId:String):List<ParseObject>?{
+        fun readAllRestaurantMessages(restaurantId:String, clientId: String):List<ParseObject>?{
             val query = ParseQuery<ParseObject>(MessageTableNamespace.TABLE_NAME)
             query.whereEqualTo(MessageTableNamespace.RESTAURANT_ID, restaurantId)
+            .whereEqualTo(MessageTableNamespace.CLIENT_ID, clientId)
             return try{
                 val objects = query.find()
                 if(objects.isEmpty())
@@ -195,6 +196,21 @@ import java.util.*
             }
         }
 
+        fun readClientsOfRestaurant(restaurantId: String): List<ParseObject>? {
+            val query = ParseQuery.getQuery<ParseObject>(ClientTableNamespace.TABLE_NAME)
+            query.whereEqualTo(ClientTableNamespace.SUBSCRIBED_RESTAURANT_TOKEN, restaurantId)
+            return try{
+                val objects = query.find()
+                if(objects.isEmpty())
+                    null
+                else
+                    objects
+            }catch (e:Exception){
+                Log.d(TAG,e.message!!)
+                null
+            }
+        }
+
         fun deleteClient(parseObject: ParseObject):Boolean{
             return try {
                 parseObject.delete()
@@ -204,6 +220,8 @@ import java.util.*
                 false
             }
         }
+
+
 /*
         fun getRestaurantSubscribers(id: String){
 

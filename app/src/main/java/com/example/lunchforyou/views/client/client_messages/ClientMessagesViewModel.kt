@@ -18,6 +18,10 @@ class ClientMessagesViewModel: ViewModel() {
     val info = MutableLiveData<Int>()
 
     fun init(){
+        downloadMessages()
+    }
+
+    private fun downloadMessages(){
         if(userId != null) {
             viewModelScope.launch {
                 val result = Message.readClientMessages(userId)
@@ -33,7 +37,7 @@ class ClientMessagesViewModel: ViewModel() {
             viewModelScope.launch {
                 val res = Message.create(userId, subscribedRestaurant, message, true, Calendar.getInstance().time)
                 if (res){
-                    info.value= R.string.success
+                    downloadMessages()
                 }else{
                     info.value=R.string.error
                 }

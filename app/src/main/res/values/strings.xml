@@ -77,5 +77,6 @@
     <string name="restaurant_token">Restaurant token</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="success">Success</string>
+    <string name="message">Message</string>
 
 </resources>

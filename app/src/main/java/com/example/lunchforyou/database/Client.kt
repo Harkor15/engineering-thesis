@@ -59,5 +59,18 @@ class Client(var parseObject: ParseObject) {
                 null
             }
         }
+
+        suspend fun readClientsOfRestaurant(restaurantId: String):List<Client>?{
+            val response = DatabaseManager.readClientsOfRestaurant(restaurantId)
+            return if(response!=null && response.isNotEmpty()){
+                val result = mutableListOf<Client>()
+                response.forEach{
+                    result.add(Client(it))
+                }
+                result
+            }else{
+                null
+            }
+        }
     }
 }
