@@ -9,9 +9,10 @@ class RestaurantMainViewModel: ViewModel() {
     private val localDataManager = LocalDataManager()
 
     val backToLoginFragment = MutableLiveData<Boolean>()
+    val onlyConfigurationPossible = MutableLiveData<Boolean>()
 
     fun init(){
-
+        onlyConfigurationPossible.value = localDataManager.getIsRestaurantConfigured().not()
     }
 
     fun logout() {

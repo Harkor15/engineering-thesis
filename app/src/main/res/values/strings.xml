@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">Lunch for you</string>
-    <string name="login">Login</string>
+    <string name="login" translatable="false">Login</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="create_new_account">Create new account</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="mail">Mail</string>
-    <string name="menu">Menu</string>
+    <string name="mail" translatable="false">Mail</string>
+    <string name="menu" translatable="false">Menu</string>
     <string name="subscriptions">Subscriptions</string>
     <string name="history">History</string>
     <string name="todayOrders">Today orders</string>
@@ -25,7 +24,7 @@
     <string name="today">Today</string>
     <string name="add_note">Add note</string>
     <string name="save">Save</string>
-    <string name="extendSubscription"> Extend subscription</string>
+    <string name="extendSubscription">Extend subscription</string>
     <string name="summary">Summary</string>
     <string name="activeSubscribers">Active subscribers</string>
     <string name="newSubscribersThisMonth">New subscribers (this month)</string>
@@ -78,5 +77,6 @@
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="success">Success</string>
     <string name="message">Message</string>
+    <string name="restaurant_manaegement">Restaurant management</string>
 
 </resources>

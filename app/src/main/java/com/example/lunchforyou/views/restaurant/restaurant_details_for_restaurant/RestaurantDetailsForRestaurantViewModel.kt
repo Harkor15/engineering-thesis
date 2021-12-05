@@ -41,8 +41,10 @@ class RestaurantDetailsForRestaurantViewModel: ViewModel() {
                         restaurantInfo.value!!.address = address
                         restaurantInfo.value!!.deliveryHours = deliveryHours
                         restaurantInfo.value!!.openedHours = openHours
-                        if (restaurantInfo.value!!.update())
+                        if (restaurantInfo.value!!.update()) {
                             response.value = R.string.personal_data_saved
+                            LocalDataManager().setIsRestaurantConfigured(true)
+                        }
                         else
                             response.value = R.string.error
                     }

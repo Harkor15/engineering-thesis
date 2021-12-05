@@ -95,6 +95,21 @@ class LocalDataManager {
             null
     }
 
+    fun setIsRestaurantConfigured(isConfigured: Boolean){
+        with (MainActivity.contextOfApplication.getSharedPreferences(
+            SessionNamespace.PREFERENCE_KEY,Context.MODE_PRIVATE).edit()){
+            putBoolean(SessionNamespace.IS_RESTAURANT_CONFIGURED,isConfigured)
+            apply()
+        }
+    }
+
+    fun getIsRestaurantConfigured(): Boolean {
+        return MainActivity.contextOfApplication.getSharedPreferences(
+            SessionNamespace.PREFERENCE_KEY, Context.MODE_PRIVATE
+        )
+            .getBoolean(SessionNamespace.IS_RESTAURANT_CONFIGURED, false)
+    }
+
 }
 
 
@@ -102,6 +117,7 @@ object SessionNamespace{
     const val PREFERENCE_KEY = "com.example.lunchforyou"
     const val USER_TOKEN = "USER_TOKEN"
     const val IS_RESTAURANT= "IS_RESTAURANT"
+    const val IS_RESTAURANT_CONFIGURED= "IS_RESTAURANT_CONFIGURED"
     const val SUBSCRIPTION_EXPIRATION= "SUBSCRIPTION_EXPIRATION"
     const val SUBSCRIBED_RESTAURANT_TOKEN = "SUBSCRIBED_RESTAURANT_TOKEN"
 }

@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#FFCCCCCC</color>
     <color name="icon_gray">#FF6F6F6F</color>
+    <color name="left_message_background">#50a7e6</color>
+    <color name="right_message_background">#60e684</color>
 </resources>

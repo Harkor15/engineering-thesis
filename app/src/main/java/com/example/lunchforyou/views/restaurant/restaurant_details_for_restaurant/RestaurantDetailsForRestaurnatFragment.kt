@@ -60,6 +60,7 @@ class RestaurantDetailsFragment : Fragment() {
 
         })
 
+
         tokenTV.setOnClickListener {
             if (token != null) {
                 val clipboardManager =

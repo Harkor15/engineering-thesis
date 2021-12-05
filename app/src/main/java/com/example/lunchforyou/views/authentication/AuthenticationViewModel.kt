@@ -67,7 +67,8 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
                 if(restaurant==null){
                     navigateToNewClientMenu.value = true
                 }else{
-                    handleRestaurant(token)
+                    val isConfigured = !restaurant.name.isNullOrBlank()
+                    handleRestaurant(token, isConfigured)
                 }
             }else{
                 if(client.subscribedRestaurantToken!=null) {
@@ -115,9 +116,10 @@ class AuthenticationViewModel:SignInCallback, ViewModel() {
         navigateToClientMenu.value = true
     }
 
-    private fun handleRestaurant(token: String){
+    private fun handleRestaurant(token: String, isConfigured:Boolean){
         localDataManager.setIsUserRestaurant(true)
         localDataManager.setUserToken(token)
+        localDataManager.setIsRestaurantConfigured(isConfigured)
         navigateToRestaurantMenu.value=true
     }
 
