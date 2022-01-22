@@ -36,11 +36,21 @@ class RegisterFragment : Fragment() {
                 navController.popBackStack()
             }
         })
-        view.findViewById<Button>(R.id.registerButton)?.setOnClickListener {
+        view.findViewById<TextView>(R.id.reg_register_as_restaurant_btn).setOnClickListener {
             viewModel.signUp(
                 view.findViewById<EditText>(R.id.regInputMail).text.toString(),
                 view.findViewById<EditText>(R.id.regInputPassword).text.toString(),
                 view.findViewById<EditText>(R.id.regInputPassword2).text.toString(),
+                true
+            )
+        }
+
+        view.findViewById<Button>(R.id.registerButton).setOnClickListener {
+            viewModel.signUp(
+                view.findViewById<EditText>(R.id.regInputMail).text.toString(),
+                view.findViewById<EditText>(R.id.regInputPassword).text.toString(),
+                view.findViewById<EditText>(R.id.regInputPassword2).text.toString(),
+                false
             )
         }
     }

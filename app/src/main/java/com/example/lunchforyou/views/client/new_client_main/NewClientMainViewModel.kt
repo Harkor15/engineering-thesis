@@ -51,6 +51,7 @@ class NewClientMainViewModel:ViewModel() {
                         if(createResult){
                             saveClientPersonalDataResult.value=true
                             forceToFillClientDetails.value=false
+                            client = Client.read(token)
                         }
                     }else{
                         client!!.name = name
@@ -90,20 +91,6 @@ class NewClientMainViewModel:ViewModel() {
             }
         }else{
             //saveRestaurantResult.value=false
-        }
-    }
-
-    fun createNewRestaurant(){
-        if(token!=null) {
-            viewModelScope.launch {
-                if(Restaurant.create(token)) {
-                    navigateToMainRestaurant.value = true
-                    val localDataManager = LocalDataManager()
-                    localDataManager.setIsUserRestaurant(true)
-                    localDataManager.setUserToken(token)
-                }
-            }
-
         }
     }
 }

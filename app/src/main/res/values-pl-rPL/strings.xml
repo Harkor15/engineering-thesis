@@ -76,4 +76,6 @@
     <string name="success">Sukces</string>
     <string name="message">Wiadomość</string>
     <string name="restaurant_manaegement">Zarządzanie restauracją</string>
+    <string name="register_as_client">Zarejestruj jako klient</string>
+    <string name="register_as_restaurant">Zarejestruj jako restauracja</string>
 </resources>

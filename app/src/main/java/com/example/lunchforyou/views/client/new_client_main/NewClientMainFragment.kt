@@ -79,9 +79,9 @@ class NewClientMainFragment : Fragment() {
         view.findViewById<Button>(R.id.ncm_logout).setOnClickListener {
             viewModel.logout()
         }
-        view.findViewById<Button>(R.id.ncm_create_new_restaurant).setOnClickListener {
+        /*view.findViewById<Button>(R.id.ncm_create_new_restaurant).setOnClickListener {
             viewModel.createNewRestaurant()
-        }
+        }*/
 
         btnSaveRestaurantCode.setOnClickListener {
             //btnSaveRestaurantCode.isEnabled=false

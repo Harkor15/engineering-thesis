@@ -78,5 +78,8 @@
     <string name="success">Success</string>
     <string name="message">Message</string>
     <string name="restaurant_manaegement">Restaurant management</string>
+    <string name="register_as_client">Register as client</string>
+    <string name="register_as_restaurant">Register as restaurant</string>
+    <string name="log_in">Log in</string>
 
 </resources>

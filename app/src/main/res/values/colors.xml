@@ -11,4 +11,8 @@
     <color name="icon_gray">#FF6F6F6F</color>
     <color name="left_message_background">#50a7e6</color>
     <color name="right_message_background">#60e684</color>
+    <color name="primary">#77148C</color>
+    <color name="background">#F4F4F4</color>
+    <color name="cards_background">#FFFFFF</color>
+
 </resources>
