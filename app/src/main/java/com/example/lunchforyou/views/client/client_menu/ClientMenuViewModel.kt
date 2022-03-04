@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lunchforyou.R
+import com.example.lunchforyou.database.Client
 import com.example.lunchforyou.database.MenuDay
 import com.example.lunchforyou.database.UserPreference
 import com.example.lunchforyou.utils.LocalDataManager
@@ -33,37 +34,52 @@ class ClientMenuViewModel:ViewModel() {
     }
 
     fun setPreference(option:String, note:String){
-        val subExpiration = LocalDataManager().getSubscriptionExpiration()
-        if(subExpiration!=null && subExpiration>=selectedDay) {
-            if (userPreference.value != null) {
-                userPreference.value!!.preferredOption = option
-                viewModelScope.launch {
-                    val result = userPreference.value!!.update()
-                    if (result)
-                        info.value = R.string.saved
-                    else
-                        info.value = R.string.error
-                }
-            } else {
-                if (!userId.isNullOrBlank() && !subscribedRestaurantId.isNullOrBlank())
+        if(userId!=null)
+        viewModelScope.launch {
+
+            val subExpiration = LocalDataManager().getSubscriptionExpiration()
+            if(subExpiration!=null && subExpiration>=selectedDay) {
+                if (userPreference.value != null) {
+                    userPreference.value!!.preferredOption = option
                     viewModelScope.launch {
-                        val result = UserPreference.create(
-                            userId,
-                            subscribedRestaurantId,
-                            selectedDay,
-                            option,
-                            "",
-                            note
-                        )
+                        val result = userPreference.value!!.update()
                         if (result)
                             info.value = R.string.saved
                         else
                             info.value = R.string.error
                     }
+                } else {
+                    var client = Client.read(userId)
+                    var clientAddress =
+                        if(client!=null)
+                            if(client.address!=null)
+                                client.address as String
+                            else
+                                ""
+                        else
+                            ""
+                    if (!userId.isNullOrBlank() && !subscribedRestaurantId.isNullOrBlank())
+                        viewModelScope.launch {
+                            val result = UserPreference.create(
+                                userId,
+                                subscribedRestaurantId,
+                                selectedDay,
+                                option,
+                                "In progress",
+                                note,
+                                clientAddress
+                            )
+                            if (result)
+                                info.value = R.string.saved
+                            else
+                                info.value = R.string.error
+                        }
+                }
+            }else{
+                info.value=R.string.you_have_no_susbscription_for_this_day
             }
-        }else{
-            info.value=R.string.you_have_no_susbscription_for_this_day
         }
+
     }
 
     private fun loadMenuDay(){

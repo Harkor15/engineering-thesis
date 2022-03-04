@@ -19,6 +19,7 @@ class UserPreference(var parseObject: ParseObject) {
         parseObject.put(UserPreferenceTableNamespace.PREFERRED_OPTION, preferredOption!!)
         parseObject.put(UserPreferenceTableNamespace.STATUS, status!!)
         parseObject.put(UserPreferenceTableNamespace.NOTE, note!!)
+        parseObject.put(UserPreferenceTableNamespace.ADDRESS, address!!)
         return DatabaseManager.save(parseObject)
     }
 
@@ -30,6 +31,7 @@ class UserPreference(var parseObject: ParseObject) {
             preferredOption:String,
             status: String,
             note:String,
+            address:String
         ):Boolean{
             val createdParseObject = ParseObject(UserPreferenceTableNamespace.TABLE_NAME)
             createdParseObject.put(UserPreferenceTableNamespace.USER_ID, userId)
@@ -38,6 +40,7 @@ class UserPreference(var parseObject: ParseObject) {
             createdParseObject.put(UserPreferenceTableNamespace.PREFERRED_OPTION, preferredOption)
             createdParseObject.put(UserPreferenceTableNamespace.STATUS, status)
             createdParseObject.put(UserPreferenceTableNamespace.NOTE, note)
+            createdParseObject.put(UserPreferenceTableNamespace.ADDRESS, address)
             return DatabaseManager.save(createdParseObject)
         }
 
